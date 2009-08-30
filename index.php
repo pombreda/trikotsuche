@@ -1,55 +1,65 @@
 <?php
-#error_reporting(E_ERROR|E_WARNING|E_NOTICE);
-// Bootstrapping
-$path_root = getcwd() . DIRECTORY_SEPARATOR;
+error_reporting(E_ERROR|E_WARNING|E_NOTICE);
 
+// Bootstrap
+$path_root_fs = getcwd() . DIRECTORY_SEPARATOR;
+$path_conf = $path_root_fs . 'conf' . DIRECTORY_SEPARATOR;
+$path_inc = $path_root_fs . 'inc' . DIRECTORY_SEPARATOR;
+$path_templates = $path_root_fs . 'templates' . DIRECTORY_SEPARATOR;
+// Static files and paths
+$template_page = $path_templates . 'page.php';
 
-
-
-
+// Includes
+include_once($path_conf . 'settings.php');
+include_once($path_inc . 'helper.php');
+include_once($path_inc . 'validate.php');
+include_once($path_inc . 'template.php');
+include_once($path_inc . 'zws.php');
 // include zanox API client library
-var_dump();die;
-require_once '/usr/local/lib/php/zx_php_client_2009-02-01/zanox-api.class.php';
-$zx = ZanoxAPI::factory('soap');
-$zx->setMessageCredentials($application_id, $shared_key);
+include_once('/usr/local/lib/php/zx_php_client_2009-02-01/zanox-api.class.php');
 
+$path_root_www = 'http://' . $_SERVER['HTTP_HOST'] . basePath();
+$path_static = $path_root_www . 'static/';
+// Static files and paths
+$page = array();
+$page['path_img'] = $path_static . 'img/';
+$page['file_js'] = $path_static . 'js/script.js';
+$page['file_css'] = $path_static . 'css/style.css';
+
+// Query parameters
+$search = $zws_default_search;
+if (isset($_REQUEST['q'])) {
+  $q = $_REQUEST['q'];
+  $params = split('/', $q);
+  if (isset($params[1])) {
+    $search = $params[1];
+  }
+}
+$page_num = $zws_page;
+if (isset($_REQUEST['page'])) {
+  $page_num = $_REQUEST['page'];
+}
+
+$zx = ZanoxAPI::factory('soap');
+$zx->setMessageCredentials($zws_application_id, $zws_shared_key);
 #var_dump($zx->getProgramsByAdspace($adspace_id));die;
 
-$params = array('region' => 'de', 'adspace' => $adspace_id);
-$result = $zx->searchProducts('deutschland trikot', $params, $page, $products);
-$page = $result->page;
+$params = array('region' => $zws_region, 'adspace' => $zws_adspace_id);
+$search .= ' ' . $zws_topic;
+$result = $zx->searchProducts($search, $params, $page_num, $zws_item_count);
+
+$page_num = $result->page;
 $item_total_count = $result->total;
 $item_count = $result->items;
 
-if ($item_total_count > 0) {
-  foreach ($result->productsResult->productItem as $item) {
-    echo renderItem($item);
-  }
+$page['title'] = 'Trikotsuche - Fußballtrikots und Fanartikel';
+$page['header'] = '<h1>' . $page['title'] . '</h1>';
+$page['content'] = '';
+$page['left'] = renderCountries();
+$page['footer'] = '';
+if ($item_total_count > 0 && isset($result->productsResult->productItem)) {
+  $page['content'] = zwsItemsHtml($result->productsResult->productItem);
+  $page['content'] .= pager($item_total_count, $item_count, $page_num);
 }
 
-function renderItem($item) {
-#  var_dump($item);
-  $name = $item->name;
-  $program = $item->program->_;
-  $manufacturer = $item->manufacturer;
-  $program = $item->program->_;
-  $currency = $item->currency;
-  $price = $item->price;
-  $image_small = $item->image->small;
-  $image_medium = $item->image->medium;
-  $image_large = $item->image->large;
-  $url = $item->url->adspace->_;
-  
-  $template = itemTemplate();
-  return sprintf($template, $url, $name, $url, $image_small, $name, $price, $currency);
-}
-
-function itemTemplate() {
-  return <<<EOF
-<li class="product">
-<h2><a href="%s">%s</a></h2>
-<div class="image"><a href="%s"><img class="small" src="%s" alt="%s" /></a></div>
-<div class="info">Preis: <span class="price">%s</span> %s</div>
-</li>
-EOF;
-}
+renderPage($page, $template_page);
