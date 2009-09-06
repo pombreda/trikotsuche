@@ -50,7 +50,7 @@ $result = $zx->searchProducts($search, $params, $page_num, $zws_item_count);
 
 $page_num = $result->page;
 $item_total_count = $result->total;
-$item_count = $result->items;
+#$item_count = $result->items;
 
 $page['title'] = 'Trikotsuche - Fußballtrikots und Fanartikel';
 $page['header'] = '<h1>' . $page['title'] . '</h1>';
@@ -60,7 +60,7 @@ $page['left'] = renderCountries();
 $page['footer'] = '<p>' . $page['title'] . '</p>';
 if ($item_total_count > 0 && isset($result->productsResult->productItem)) {
   $page['content'] = zwsItemsHtml($result->productsResult->productItem);
-  $page['pager'] .= pager($item_total_count, $item_count, $page_num);
+  $page['pager'] .= pager($item_total_count, $zws_item_count, $page_num);
 }
 
 renderPage($page, $template_page);

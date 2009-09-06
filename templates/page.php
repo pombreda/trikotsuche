@@ -9,28 +9,35 @@
 <script type="text/javascript" src="<?= $page['file_js'] ?>"></script>
 </head>
 <body>
-<div id="doc2" class="yui-t2">
-  <div id="hd" role="banner">
-    <?= $page['header'] ?>
+<div id="doc-custom" class="yui-t2">
+  <div id="hd">
+    <div id="top" class="section">
+      <?= $page['header'] ?>
+    </div>
   </div>
-  <div id="bd" role="main">
-    <div id="yui-main">
-      <div class="yui-b">
-        <div id="content" class="yui-g">
-          <?= $page['content'] ?>
+  <div id="bd">
+    <div id="main" class="section">
+      <div id="yui-main">
+        <div class="yui-b">
+          <div id="content" class="yui-g">
+            <?= $page['content'] ?>
+          </div>
+          <div id="pager" class="yui-g"> 
+            <?= $page['pager'] ?>
+          </div> 
         </div>
-        <div id="pager" class="yui-g"> 
-          <?= $page['pager'] ?>
-        </div> 
+      </div>
+      <div id="left" class="yui-b">
+        <?= $page['left'] ?>
       </div>
     </div>
-    <div id="left" class="yui-b">
-      <?= $page['left'] ?>
+  </div>
+  <div id="ft">
+    <div id="bottom" class="section">
+      <?= $page['footer'] ?>
     </div>
   </div>
-  <div id="ft" role="contentinfo">
-    <?= $page['footer'] ?>
-  </div>
+  
 </div>
 </body>
 </html>

@@ -4,9 +4,13 @@
 #left {background:#eee;}
 #pager {background:#ddd;}
 
-.section {
+#doc-custom, #hd, #bd, #ft {
 width:100%;
+}
+.section {
+width:960px;
 clear:both;
+margin:0 auto;
 }
 #products h2 {
 font:bold 12px/18px sans-serif;

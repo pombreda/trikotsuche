@@ -6,10 +6,12 @@ function renderPage($page, $template) {
 function pager($total, $limit, $page) {
   $html = '';
   if ($total > $limit && $limit != 0) {
-    $max_page = ceil($total / $limit);
-    $html .= '<div id="pager" class="">';
+    $max_page = ceil($total / $limit) - 1;
+    $html .= '<div id="pagination" class="">';
+    $html .= sprintf('<div>Seite %d von %d</div>', $page, $max_page);
+    $html .= sprintf('<div>Gesamt %d, Anzahl %d</div>', $total, $limit);
     # previous link
-    if ($page > 1) {
+    if ($page > 0) {
       $html .= sprintf('<a onclick="pager(%d)">&lt;&lt;</a>', $page -1);
     }
     # next link
