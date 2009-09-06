@@ -1,4 +1,9 @@
-/* debug */
+/* YUI overrides */
+.yui-g .yui-gf {
+ float:left;
+}
+
+/* backgrounds */
 #ft {background:#f6f6f6;}
 
 /* layout */
@@ -38,10 +43,6 @@ font:bold 1.8em Arial, sans-serif;
 font:1.15em Arial, sans-serif;
 }
 /* content top */
-#content-top h1 {
-font:bold 1.2em Arial, sans-serif;
-margin:5px 0 15px;
-}
 #search-info {
 text-align:right;
 padding:5px 0;
@@ -72,4 +73,9 @@ height:70px;
 #products li.product {
 height:85px;
 overflow:hidden;
+}
+/* elements */
+h1, h2 {
+font:bold 1.2em Arial, sans-serif;
+margin:5px 0 15px;
 }

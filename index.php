@@ -54,6 +54,7 @@ $item_total_count = $result->total;
 
 $search_display = ucwords(checkPlain($search));
 
+$page['base_url'] = $path_root_www;
 $page['site_name'] = $site_name;
 $page['site_slogan'] = $site_slogan;
 $page['title'] = $search_display . ' suchen und kaufen';

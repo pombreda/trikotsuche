@@ -6,7 +6,7 @@
 <link rel="shortcut icon" href="<?= $page['path_img'] ?>favicon.ico" type="image/x-icon" />
 <link type="text/css" rel="stylesheet" media="all" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" />
 <link type="text/css" rel="stylesheet" media="all" href="<?= $page['path_css'] ?>style.css" />
-<script type="text/javascript" src="<?= $page['file_js'] ?>"></script>
+<script type="text/javascript">var base_url = '<?= $page['base_url'] ?>';</script>
 </head>
 <body>
 <div id="doc-custom" class="yui-t2">
@@ -49,7 +49,8 @@
       <p><?= $page['footer'] ?></p>
     </div>
   </div>
-  
 </div>
+<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="<?= $page['file_js'] ?>"></script>
 </body>
 </html>
