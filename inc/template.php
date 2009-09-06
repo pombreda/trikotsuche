@@ -7,16 +7,19 @@ function pager($total, $limit, $page) {
   $html = '';
   if ($total > $limit && $limit != 0) {
     $max_page = ceil($total / $limit) - 1;
-    $html .= '<div id="pagination" class="">';
-    $html .= sprintf('<div>Seite %d von %d</div>', $page, $max_page);
-    $html .= sprintf('<div>Gesamt %d, Anzahl %d</div>', $total, $limit);
+    $html .= '<div id="pagination">';
     # previous link
     if ($page > 0) {
-      $html .= sprintf('<a onclick="pager(%d)">&lt;&lt;</a>', $page -1);
+      $html .= sprintf('<a onclick="pager(%d)">&lt;&lt;</a>', 0);
+      $html .= '&nbsp;&nbsp;';
+      $html .= sprintf('<a onclick="pager(%d)">&lt;</a>', $page -1);
     }
+    $html .= sprintf('<span class="pager-info">%d von %d</span>', $page + 1, $max_page + 1);
     # next link
     if ($max_page > $page) {
-      $html .= sprintf('<a onclick="pager(%d)">&gt;&gt;</a>', $page + 1);
+      $html .= sprintf('<a onclick="pager(%d)">&gt;</a>', $page + 1);
+      $html .= '&nbsp;&nbsp;';
+      $html .= sprintf('<a onclick="pager(%d)">&gt;&gt;</a>', $max_page);
     }
     
     $html .= '</div>';
@@ -25,7 +28,7 @@ function pager($total, $limit, $page) {
 }
 function renderCountries() {
   global $path_root_www; # ugly
-  $html = '<ul>';
+  $html = '<ul id="nav">';
   $template = '<li><a href="%s">%s</a></li>';
   $countries = countries();
   foreach ($countries as $country) {

@@ -27,7 +27,7 @@ $page['file_js'] = $path_static . 'js/script.js';
 $page['path_css'] = $path_static . 'css/';
 
 // Query parameters
-$search = $zws_default_search;
+$search = $site_default_search;
 if (isset($_REQUEST['q'])) {
   $q = $_REQUEST['q'];
   $params = split('/', $q);
@@ -45,19 +45,24 @@ $zx->setMessageCredentials($zws_application_id, $zws_shared_key);
 #var_dump($zx->getProgramsByAdspace($adspace_id));die;
 
 $params = array('region' => $zws_region, 'adspace' => $zws_adspace_id);
-$search .= ' ' . $zws_topic;
+$search = trim($search . ' ' . $site_topic);
 $result = $zx->searchProducts($search, $params, $page_num, $zws_item_count);
 
 $page_num = $result->page;
 $item_total_count = $result->total;
 #$item_count = $result->items;
 
-$page['title'] = 'Trikotsuche - Fußballtrikots und Fanartikel';
-$page['header'] = '<h1>' . $page['title'] . '</h1>';
+$search_display = ucwords(checkPlain($search));
+
+$page['site_name'] = $site_name;
+$page['site_slogan'] = $site_slogan;
+$page['title'] = $search_display . ' suchen und kaufen';
+$page['search_display'] = $search_display;
+$page['search_info'] = 'Suchergebnisse: ' . $item_total_count;
 $page['content'] = '';
 $page['pager'] = '';
 $page['left'] = renderCountries();
-$page['footer'] = '<p>' . $page['title'] . '</p>';
+$page['footer'] = $site_footer;
 if ($item_total_count > 0 && isset($result->productsResult->productItem)) {
   $page['content'] = zwsItemsHtml($result->productsResult->productItem);
   $page['pager'] .= pager($item_total_count, $zws_item_count, $page_num);

@@ -12,13 +12,25 @@
 <div id="doc-custom" class="yui-t2">
   <div id="hd">
     <div id="top" class="section">
-      <?= $page['header'] ?>
+      <div id="site-info">
+        <div id="site-name"><?= $page['site_name'] ?></div>
+        <div id="site-slogan"><?= $page['site_slogan'] ?></div>
+      </div>
     </div>
   </div>
+  
   <div id="bd">
     <div id="main" class="section">
       <div id="yui-main">
         <div class="yui-b">
+          <div id="content-top" class="yui-g">
+            <div id="search-display" class="yui-u first">
+              <h1><?= $page['search_display'] ?></h1>
+            </div>
+            <div id="search-info" class="yui-u">
+              <?= $page['search_info'] ?>
+            </div>
+          </div>
           <div id="content" class="yui-g">
             <?= $page['content'] ?>
           </div>
@@ -34,7 +46,7 @@
   </div>
   <div id="ft">
     <div id="bottom" class="section">
-      <?= $page['footer'] ?>
+      <p><?= $page['footer'] ?></p>
     </div>
   </div>
   
