@@ -24,7 +24,7 @@ $path_static = $path_root_www . 'static/';
 $page = array();
 $page['path_img'] = $path_static . 'img/';
 $page['file_js'] = $path_static . 'js/script.js';
-$page['file_css'] = $path_static . 'css/style.css';
+$page['path_css'] = $path_static . 'css/';
 
 // Query parameters
 $search = $zws_default_search;
@@ -55,11 +55,12 @@ $item_count = $result->items;
 $page['title'] = 'Trikotsuche - Fußballtrikots und Fanartikel';
 $page['header'] = '<h1>' . $page['title'] . '</h1>';
 $page['content'] = '';
+$page['pager'] = '';
 $page['left'] = renderCountries();
-$page['footer'] = '';
+$page['footer'] = '<p>' . $page['title'] . '</p>';
 if ($item_total_count > 0 && isset($result->productsResult->productItem)) {
   $page['content'] = zwsItemsHtml($result->productsResult->productItem);
-  $page['content'] .= pager($item_total_count, $item_count, $page_num);
+  $page['pager'] .= pager($item_total_count, $item_count, $page_num);
 }
 
 renderPage($page, $template_page);

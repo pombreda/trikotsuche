@@ -85,10 +85,14 @@ function zwsItemAsArray($item) {
  */
 function zwsItemHtml() {
   return <<<EOF
-<li class="product">
-<h2><a href="%s">%s</a></h2>
-<div class="image"><a href="%s"><img class="small" src="%s" alt="%s" /></a></div>
-<div class="info">Preis: <span class="price">%s</span> %s</div>
+<li class="product yui-gf">
+  <div class="yui-u first">
+    <div class="image"><a href="%s"><img class="small" src="%s" alt="%s" /></a></div>
+  </div>
+  <div class="yui-u">
+    <h2><a href="%s">%s</a></h2>
+    <div class="info">Preis: <span class="price">%s</span> %s</div>
+  </div>
 </li>
 EOF;
 }
@@ -103,9 +107,9 @@ function zwsRenderItem($template, $item) {
   return sprintf(
     $template,
     $item['url'],
+    $item['image_small'],
     $item['name'],
     $item['url'],
-    $item['image_small'],
     $item['name'],
     $item['price'],
     $item['currency']

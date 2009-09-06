@@ -4,26 +4,31 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?= $page['title'] ?></title>
 <link rel="shortcut icon" href="<?= $page['path_img'] ?>favicon.ico" type="image/x-icon" />
-<link type="text/css" rel="stylesheet" media="all" href="<?= $page['file_css'] ?>" />
+<link type="text/css" rel="stylesheet" media="all" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" />
+<link type="text/css" rel="stylesheet" media="all" href="<?= $page['path_css'] ?>style.css" />
 <script type="text/javascript" src="<?= $page['file_js'] ?>"></script>
 </head>
 <body>
-<div class="section">
-  <div id="header" class="section-wrapper">
+<div id="doc2" class="yui-t2">
+  <div id="hd" role="banner">
     <?= $page['header'] ?>
   </div>
-</div>
-<div class="section">
-  <div id="container" class="section-wrapper">
-    <div id="left" class="sidebar column">
+  <div id="bd" role="main">
+    <div id="yui-main">
+      <div class="yui-b">
+        <div id="content" class="yui-g">
+          <?= $page['content'] ?>
+        </div>
+        <div id="pager" class="yui-g"> 
+          <?= $page['pager'] ?>
+        </div> 
+      </div>
+    </div>
+    <div id="left" class="yui-b">
       <?= $page['left'] ?>
     </div>
-    <div id="content" class="column">
-      <?= $page['content'] ?>
-    </div>
-</div>
-<div class="section">
-  <div id="footer" class="section-wrapper">
+  </div>
+  <div id="ft" role="contentinfo">
     <?= $page['footer'] ?>
   </div>
 </div>

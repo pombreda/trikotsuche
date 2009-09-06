@@ -7,7 +7,7 @@ function pager($total, $limit, $page) {
   $html = '';
   if ($total > $limit && $limit != 0) {
     $max_page = ceil($total / $limit);
-    $html .= '<div id="pager">';
+    $html .= '<div id="pager" class="">';
     # previous link
     if ($page > 1) {
       $html .= sprintf('<a onclick="pager(%d)">&lt;&lt;</a>', $page -1);
