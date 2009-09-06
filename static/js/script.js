@@ -1,7 +1,19 @@
 $(function(){
   imp();
   asyncReq();
+  linkHd();
 });
+
+function linkHd() {
+  var curr = document.location.href;
+  if (curr != base_url) {
+    $('#hd').click(function(){
+      document.location.href = base_url;
+    });
+    $('#hd').css('cursor', 'pointer');
+    $('#hd').attr('title', 'Home');
+  }
+}
 
 function asyncReq() {
   $('.async').click(function(){
