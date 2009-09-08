@@ -44,29 +44,26 @@ $zx = ZanoxAPI::factory('soap');
 $zx->setMessageCredentials($zws_application_id, $zws_shared_key);
 #var_dump($zx->getProgramsByAdspace($adspace_id));die;
 
+$item_total_count = 0;
 $params = array('region' => $zws_region, 'adspace' => $zws_adspace_id);
 $search = trim($search . ' ' . $site_topic);
-$result = $zx->searchProducts($search, $params, $page_num, $zws_item_count);
-
-$page_num = $result->page;
-$item_total_count = $result->total;
-#$item_count = $result->items;
-
 $search_display = ucwords(checkPlain($search));
-
 $page['base_url'] = $path_root_www;
 $page['site_name'] = $site_name;
 $page['site_slogan'] = $site_slogan;
 $page['title'] = $search_display . ' suchen und kaufen';
 $page['search_display'] = $search_display;
-$page['search_info'] = 'Suchergebnisse: ' . $item_total_count;
-$page['content'] = '';
+$page['search_info'] = '';
+$page['content'] = 'Keine Ergebnisse';
 $page['pager'] = '';
 $page['left'] = renderCountries();
 $page['footer'] = $site_footer;
-if ($item_total_count > 0 && isset($result->productsResult->productItem)) {
+
+$result = $zx->searchProducts($search, $params, $page_num, $zws_item_count);
+if (isset($result->total) && isset($result->productsResult->productItem)) {
+  $page['search_info'] = 'Suchergebnisse: ' . $result->total;
   $page['content'] = zwsItemsHtml($result->productsResult->productItem);
-  $page['pager'] .= pager($item_total_count, $zws_item_count, $page_num);
+  $page['pager'] .= pager($result->total, $zws_item_count, $result->page);
 }
 
 renderPage($page, $template_page);
