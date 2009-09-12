@@ -15,63 +15,63 @@ function zwsItemAsArray($item) {
     $i['name'] = ZWS_NO_DATA;
   }
   else {
-    $i['name'] = checkPlain($item->name);
+    $i['name'] = check_plain($item->name);
   }
   
   if (!isset($item->program->_)) {
     $i['program'] = ZWS_NO_DATA;
   }
   else {
-    $i['program'] = checkPlain($item->program->_);
+    $i['program'] = check_plain($item->program->_);
   }
   
   if (!isset($item->currency)) {
     $i['currency'] = ZWS_NO_DATA;
   }
   else {
-    $i['currency'] = checkPlain($item->currency);
+    $i['currency'] = check_plain($item->currency);
   }
   
   if (!isset($item->price)) {
     $i['price'] = ZWS_NO_DATA;
   }
   else {
-    $i['price'] = checkPlain($item->price);
+    $i['price'] = check_plain($item->price);
   }
   
   if (!isset($item->url->adspace->_)) {
     $i['url'] = '';
   }
   else {
-    $i['url'] = checkUri($item->url->adspace->_);
+    $i['url'] = check_uri($item->url->adspace->_);
   }
   
   if (!isset($item->manufacturer)) {
     $i['manufacturer'] = ZWS_MANUFACTURER;
   }
   else {
-    $i['manufacturer'] = checkPlain($item->manufacturer);
+    $i['manufacturer'] = check_plain($item->manufacturer);
   }
   
   if (!isset($item->image->small)) {
     $i['image_small'] = ZWS_IMAGE_SMALL_URL;
   }
   else {
-    $i['image_small'] = checkUri($item->image->small);
+    $i['image_small'] = check_uri($item->image->small);
   }
   
   if (!isset($item->image->medium)) {
     $i['image_medium'] = ZWS_IMAGE_MEDIUM_URL;
   }
   else {
-    $i['image_medium'] = checkUri($item->image->medium);
+    $i['image_medium'] = check_uri($item->image->medium);
   }
   
   if (!isset($item->image->large)) {
     $i['image_large'] = ZWS_IMAGE_LARGE_URL;
   }
   else {
-    $i['image_large'] = checkUri($item->image->large);
+    $i['image_large'] = check_uri($item->image->large);
   }
 
   return $i;

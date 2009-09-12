@@ -1,3 +1,4 @@
 conf/settings.php
 static/html/
-lib/
+lib/3rd/
+cache/

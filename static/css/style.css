@@ -33,14 +33,18 @@ height:85px;
 margin-left:14.8461em;
 }
 #site-name {
-font:bold 2.6em Arial, sans-serif;
+font:bold 2.6em sans-serif;
 }
 #site-slogan {
-font:bold 1.8em Arial, sans-serif;
+font:bold 1.8em sans-serif;
 }
 /* navigation */
 #nav {
-font:1.15em Arial, sans-serif;
+font:1.15em sans-serif;
+}
+#nav .subnav-header {
+font: bold 1em sans-serif;
+cursor:pointer;
 }
 /* content top */
 #search-info {
@@ -54,6 +58,9 @@ padding:10px 0;
 }
 #pagination .pager-info {
 margin:0 10px;
+}
+#pagination a {
+cursor:pointer;
 }
 /* footer */
 #bottom {
@@ -76,6 +83,6 @@ overflow:hidden;
 }
 /* elements */
 h1, h2 {
-font:bold 1.2em Arial, sans-serif;
+font:bold 1.2em sans-serif;
 margin:5px 0 15px;
 }

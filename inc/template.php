@@ -28,39 +28,55 @@ function pager($total, $limit, $page) {
 }
 function renderCountries() {
   global $path_root_www; # ugly
-  $html = '<ul id="nav">';
+  $html = '<div id="nav">';
   $template = '<li><a href="%s">%s</a></li>';
   $countries = countries();
-  foreach ($countries as $country) {
-    $path = $path_root_www . 'land/' . strtolower($country);
-    $html .= sprintf($template, $path, $country);
+  foreach ($countries as $continent => $countries) {
+    $html .= sprintf('<h3 class="subnav-header">%s</h3>', $continent);
+    $html .= sprintf('<ul class="subnav" id="%s">', strtolower($continent));
+    foreach($countries as $country) {
+       $path = $path_root_www . 'land/' . strtolower($country);
+      $html .= sprintf($template, $path, $country);
+    }
+    $html .= '</ul>';
   }
-  $html .= '</ul>';
+  $html .= '</div>';
   return $html;
 }
 function countries() {
   return array(
-    'Deutschland',
-    'England',
-    'Spanien',
-    'Italien',
-    'Portugal',
-    'Türkei',
-    'Frankreich',
-    'Holland',
-    'Schweden',
-    'Schweiz',
-    'Dänemark',
-    'Brasilien',
-    'Argentinien',
-    'Mexiko',
-    'Chile',
-    'USA',
-    'Elfenbeinküste',
-    'Südafrika',
-    'Nigeria',
-    'Ägypten',
-    'Japan',
-    'Südkorea'
+    'Europa' => array(
+      'Deutschland',
+      'England',
+      'Spanien',
+      'Italien',
+      'Portugal',
+      'Türkei',
+      'Frankreich',
+      'Holland',
+      'Schweden',
+      'Schweiz',
+      'Dänemark',
+    ),
+    'Amerika' => array(
+      'Brasilien',
+      'Argentinien',
+      'Mexiko',
+      'Chile',
+      'USA',
+    ),
+    'Afrika' => array(
+      'Elfenbeinküste',
+      'Südafrika',
+      'Nigeria',
+      'Ägypten',
+    ),
+    'Asien' => array(
+      'Japan',
+      'Südkorea'
+    ),
+    'Ozeanien' => array(
+      'Australien',
+    )
   );
 }
