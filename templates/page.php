@@ -9,7 +9,7 @@
 <script type="text/javascript">var base_url = '<?= $page['base_url'] ?>';</script>
 </head>
 <body>
-<div id="doc-custom" class="yui-t2">
+<div id="doc-custom" class="yui-t1">
   <div id="hd">
     <div id="top" class="section">
       <div id="site-info">
@@ -23,6 +23,7 @@
     <div id="main" class="section">
       <div id="yui-main">
         <div class="yui-b">
+        
           <div id="content-top" class="yui-g">
             <div id="search-display" class="yui-u first">
               <h1><?= $page['search_display'] ?></h1>
@@ -31,12 +32,20 @@
               <?= $page['search_info'] ?>
             </div>
           </div>
-          <div id="content" class="yui-g">
-            <?= $page['content'] ?>
+          
+          <div class="yui-ge">
+            <div id="content" class="yui-u first">
+              <?= $page['content'] ?>
+            </div>
+            <div id="right" class="yui-u">
+              <?= $page['right'] ?>
+            </div>
           </div>
+          
           <div id="pager" class="yui-g"> 
             <?= $page['pager'] ?>
-          </div> 
+          </div>
+          
         </div>
       </div>
       <div id="left" class="yui-b">

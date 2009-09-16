@@ -1,6 +1,6 @@
 /* YUI overrides */
 .yui-g .yui-gf {
- float:left;
+ /* float:left; */
 }
 
 /* backgrounds */
@@ -68,17 +68,32 @@ text-align:center;
 padding:10px 0;
 }
 
-/* products */
-#products h2 {
-font:bold 12px/18px sans-serif;
-width:95%;
+/* items */
+#items .item {
+float:left;
+width:50%;
+margin:0 0 0.5em 0;
 }
-#products .image .small {
+#items .item .left {
+float:left;
+width:30%;
+}
+#items .item .right {
+float:left;
+width:70%;
+}
+#items h4 {
+font:.9em/1.2em sans-serif;
+width:95%;
+margin:.2em 0;
+padding:0;
+}
+#items .image .small {
 width:70px;
 height:70px;
 }
-#products li.product {
-height:85px;
+#items li.item {
+height:80px;
 overflow:hidden;
 }
 /* elements */
