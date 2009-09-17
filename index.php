@@ -51,8 +51,9 @@ foreach ($urls as $pattern => $action) {
     $a = explode('.', $action);
     $class = $a[0];
     $method = $a[1];
-    $p = new $class();
+    $p = new $class($path_root_www);
     $p->$method();
+    $p->regions();
     break;
   }
 }
@@ -81,18 +82,8 @@ $page['search_display'] = $search_display;
 $page['search_info'] = '';
 $page['content'] = 'Keine Ergebnisse';
 $page['pager'] = '';
-$page['left'] = $p->menu('nav', $p->countries(), $path_root_www . 'land/');
-$page['right'] = '';
-
-$teams = $p->teams();
-if (isset($teams[$parent])) {
-  $page['right'] .= $p->menu_items($teams[$parent], 'Vereine', $path_root_www . $parent . '/verein/');
-}
-$players = $p->players();
-if (isset($players[$parent])) {
-  $page['right'] .= $p->menu_items($players[$parent], 'Spieler', $path_root_www . $parent . '/spieler/');
-}
-
+$page['left'] = $p->region('left');
+$page['right'] = $p->region('right');
 $page['footer'] = $site_footer;
 
 $cache_id = md5($search . $page_num);
