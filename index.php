@@ -45,13 +45,18 @@ if (isset($_REQUEST['q'])) {
   $q = $_REQUEST['q'];
 }
 
+$params = array('region' => $zws_region, 'adspace' => $zws_adspace_id);
+$zx = ZanoxAPI::factory('soap');
+$zx->setMessageCredentials($zws_application_id, $zws_shared_key);
+
 foreach ($urls as $pattern => $action) {
   $re = '!' . $pattern . '!msi';
   if (preg_match($re, $q)) {
     $a = explode('.', $action);
     $class = $a[0];
     $method = $a[1];
-    $p = new $class($path_root_www);
+    $p = new $class($path_root_www, $zx);
+    $p->params($params);
     $p->$method();
     $p->regions();
     break;
@@ -63,22 +68,13 @@ if (!$p) {
   exit();
 }
 
-$parent = $p->padre();
-
-$page_num = $zws_page;
-if (isset($_REQUEST['page'])) {
-  $page_num = $_REQUEST['page'];
-}
-
-$item_total_count = 0;
-$search = trim($p->topic() . ' ' . $site_topic);
-$search_display = ucwords(check_plain($search));
+$title = ucwords(check_plain($p->topic()));
 
 $page['base_url'] = $path_root_www;
 $page['site_name'] = $site_name;
 $page['site_slogan'] = $site_slogan;
-$page['title'] = $search_display . ' suchen und kaufen';
-$page['search_display'] = $search_display;
+$page['title'] = $title . ' - Trikots suchen und kaufen';
+$page['search_display'] = $page['title'];
 $page['search_info'] = '';
 $page['content'] = 'Keine Ergebnisse';
 $page['pager'] = '';
@@ -86,17 +82,13 @@ $page['left'] = $p->region('left');
 $page['right'] = $p->region('right');
 $page['footer'] = $site_footer;
 
-$cache_id = md5($search . $page_num);
+$cache_id = md5($q . $p->num());
 $cache = new Cache($path_cache, 86400, true);
 $result = null;
 
 if (false === ($result = $cache->get($cache_id))) {
-  $params = array('region' => $zws_region, 'adspace' => $zws_adspace_id);
-  $zx = ZanoxAPI::factory('soap');
-  $zx->setMessageCredentials($zws_application_id, $zws_shared_key);
-  $result = $zx->searchProducts($search, $params, $page_num, $zws_item_count);
-
-  if (isset($result->total) && $result->total > 0) {
+  $result = $p->content();
+  if (isset($result)) {
     $cache->set($cache_id, $result);
   }
   else {
@@ -104,10 +96,13 @@ if (false === ($result = $cache->get($cache_id))) {
   }
 }
 
-if ($result) {
+if (isset($result->total)) {
   $page['search_info'] = 'Suchergebnisse: ' . $result->total;
-  $page['content'] = zwsItemsHtml($result->productsResult->productItem);
-  $page['pager'] .= $p->pager($result->total, $zws_item_count, $result->page);
+  $page['content'] = zwsItemsHtml($result->productsResult->productItem, $p);
+  $page['pager'] = $p->pager($result->total, $zws_item_count);
+}
+elseif (isset($result->productsResult)) {
+  $page['content'] = var_export($result, true);
 }
 
 $p->render($page, $template_page);

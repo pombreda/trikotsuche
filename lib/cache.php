@@ -84,7 +84,7 @@ class Cache {
    * @return $data
    */
   public function get($cache_id) {
-    $cache_file = $this->dir() . $cache_id;
+    $cache_file = $this->path($cache_id) . $cache_id;
     if (!file_exists($cache_file)) {
       return FALSE;
     }
@@ -117,7 +117,9 @@ class Cache {
    * @return bool
    */
   public function set($cache_id, $data) {
-    $cache_file = $this->dir() . $cache_id;
+    $path = $this->path($cache_id);
+    $this->createDir($path);
+    $cache_file = $path . $cache_id;
     if (!$fh = fopen($cache_file, 'w')) {
       return FALSE;
     }
@@ -131,6 +133,10 @@ class Cache {
     }
     fclose($fh);
     return TRUE;
+  }
+  
+  public function path($cache_id) {
+    return $this->dir() . substr($cache_id, 0 ,2) . DIRECTORY_SEPARATOR;
   }
 
   /**

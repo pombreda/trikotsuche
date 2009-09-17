@@ -7,6 +7,8 @@ abstract class Page {
   protected $topic = '';
   protected $padre = '';
   protected $path = '';
+  protected $num = 0;
+  protected $content = '';
 
   # Page regions
   protected $left = '';
@@ -25,19 +27,33 @@ abstract class Page {
     if (isset($_REQUEST['q'])) {
       $q = $_REQUEST['q'];
     }
+
+    if (isset($_REQUEST['page'])) {
+      $this->num = $_REQUEST['page'];
+    }
+    
     $this->args = explode('/', $q);
   }
   
-  protected function urify($uri) {
-    $uri = str_replace(' ', '-', $uri);
-    return urlencode(strtolower($uri));
-  }
-
   protected function args($idx) {
     if (isset($this->args[$idx])) {
       return str_replace('-', ' ', $this->args[$idx]);
     }
     return false;
+  }
+  
+  public function num() {
+    return $this->num;
+  }
+  
+  public function urify($uri) {
+    $uri = preg_replace('/[^\w\pL]/u', '-', trim($uri));
+    return urlencode(strtolower($uri));
+  }
+  
+  public function unurify($uri) {
+    $uri = str_replace('-', ' ', $uri);
+    return urldecode($uri);
   }
   
   public function padre($padre = null) {
@@ -62,7 +78,19 @@ abstract class Page {
       $this->topic = $topic;
     return $this->topic;
   }
+  
+  public function params($params = null) {
+    if ($params)
+      $this->params = $params;
+    return $this->params;
+  }
 
+  public function content($content = null) {
+    if ($content)
+      $this->content = $content;
+    return $this->content;
+  }
+  
   public function left($left = null) {
     if ($left)
       $this->left = $left;
@@ -108,21 +136,24 @@ abstract class Page {
     return $html;
   }
 
-  function pager($total, $limit, $page) {
+  public function pager($total, $limit) {
     $html = '';
+    $total = intval($total);
+    $limit = intval($limit);
+    $num = intval($this->num());
     if ($total > $limit && $limit != 0) {
       $max_page = ceil($total / $limit) - 1;
       $html .= '<div id="pagination">';
       # previous link
-      if ($page > 0) {
+      if ($num > 0) {
         $html .= sprintf('<a onclick="pager(%d)">&lt;&lt;</a>', 0);
         $html .= '&nbsp;&nbsp;';
-        $html .= sprintf('<a onclick="pager(%d)">&lt;</a>', $page -1);
+        $html .= sprintf('<a onclick="pager(%d)">&lt;</a>', $num -1);
       }
-      $html .= sprintf('<span class="pager-info">%d von %d</span>', $page +1, $max_page +1);
+      $html .= sprintf('<span class="pager-info">%d von %d</span>', $num +1, $max_page +1);
       # next link
-      if ($max_page > $page) {
-        $html .= sprintf('<a onclick="pager(%d)">&gt;</a>', $page +1);
+      if ($max_page > $num) {
+        $html .= sprintf('<a onclick="pager(%d)">&gt;</a>', $num +1);
         $html .= '&nbsp;&nbsp;';
         $html .= sprintf('<a onclick="pager(%d)">&gt;&gt;</a>', $max_page);
       }

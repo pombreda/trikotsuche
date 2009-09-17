@@ -3,9 +3,10 @@
  * FIXME inappropriate class name
  */
 class Countries extends Page {
-  public function __construct($path) {
+  public function __construct($path, $zx) {
     parent::__construct();
     $this->path($path);
+    $this->zx = $zx;
   }
   
   public function index() {
@@ -14,8 +15,17 @@ class Countries extends Page {
     #$this->region('right', $right);
   }
   
+  public function search() {
+    $topic = $this->topic() . ' trikot';
+    $result = $this->zx->searchProducts($topic, $this->params(), $this->num(), 10);
+    $this->content($result);
+  }
+  
   public function item() {
-    
+    $this->topic($this->unurify($this->args(1)));
+    $id = $this->args(2);
+    $result = $this->zx->getProduct($id);
+    $this->content($result);
   }
   
   public function country($country = null) {
@@ -53,6 +63,7 @@ class Countries extends Page {
   public function countries() {
     $this->topic($this->args(1));
     $this->padre($this->args(1));
+    $this->search();
   }
   
   public function countryList() {
@@ -97,6 +108,7 @@ class Countries extends Page {
   public function players() {
     $this->topic($this->args(2));
     $this->padre($this->args(0));
+    $this->search();
   }
   
   public function playerList() {
@@ -150,6 +162,7 @@ class Countries extends Page {
   public function teams() {
     $this->topic($this->args(2));
     $this->padre($this->args(0));
+    $this->search();
   }
   
   public function teamList() {

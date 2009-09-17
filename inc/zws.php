@@ -11,6 +11,11 @@ define('ZWS_NO_DATA', 'N.A.');
  * @return array $i
  */
 function zwsItemAsArray($item) {
+  if (!isset($item->id)) {
+    return false;
+  }
+  $i['id'] = $item->id;
+  
   if (!isset($item->name)) {
     $i['name'] = ZWS_NO_DATA;
   }
@@ -85,13 +90,14 @@ function zwsItemAsArray($item) {
  */
 function zwsItemHtml() {
   return <<<EOF
-<li class="item">
+<li class="item" id="id-%s">
   <div class="left">
     <div class="image"><a href="%s"><img class="small" src="%s" alt="%s" /></a></div>
   </div>
   <div class="right">
-    <h4><a href="%s">%s</a></h4>
-    <div class="info">Preis: <span class="price">%s</span> %s</div>
+    <h4>%s</h4>
+    <div class="info">Hersteller: %s</div>
+    <div class="info"><a href="%s">%s %s bei %s</a></div>
   </div>
 </li>
 EOF;
@@ -103,24 +109,28 @@ EOF;
  * @param void
  * @return string
  */
-function zwsRenderItem($template, $item) {
+function zwsRenderItem($template, $item, $p) {
+  $item_path = $p->path() . 'fanartikel/' . $p->urify($item['name']) . '/' . $item['id'];
   return sprintf(
     $template,
-    $item['url'],
+    $item['id'],
+    $item_path,
     $item['image_small'],
     $item['name'],
-    $item['url'],
     $item['name'],
+    $item['manufacturer'],
+    $item['url'],
     $item['price'],
-    $item['currency']
+    $item['currency'],
+    $item['program']
    );
 }
 
-function zwsItemsHtml($items) {
+function zwsItemsHtml($items, $p) {
   $html = '<ul id="items">';
   $item_template = zwsItemHtml();
   foreach ($items as $item) {
-    $html .= zwsRenderItem($item_template, zwsItemAsArray($item));
+    $html .= zwsRenderItem($item_template, zwsItemAsArray($item), $p);
   }
   $html .= '</ul>';
   return $html;

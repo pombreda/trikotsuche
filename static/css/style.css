@@ -71,8 +71,9 @@ padding:10px 0;
 /* items */
 #items .item {
 float:left;
-width:50%;
-margin:0 0 0.5em 0;
+width:48%;
+padding:.2em;
+margin:0 .2em 0.5em 0;
 }
 #items .item .left {
 float:left;
@@ -87,14 +88,17 @@ font:.9em/1.2em sans-serif;
 width:95%;
 margin:.2em 0;
 padding:0;
+height:3.6em;
+overflow:hidden;
 }
 #items .image .small {
 width:70px;
 height:70px;
 }
 #items li.item {
-height:80px;
+height:85px;
 overflow:hidden;
+border:0.1em solid #efefef;
 }
 /* elements */
 h1, h2 {
