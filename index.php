@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ERROR|E_WARNING|E_NOTICE);
+#error_reporting(E_ERROR|E_WARNING|E_NOTICE);
 
 // Bootstrap
 $path_root_fs = getcwd() . DIRECTORY_SEPARATOR;
@@ -50,7 +50,7 @@ $zx = ZanoxAPI::factory('soap');
 $zx->setMessageCredentials($zws_application_id, $zws_shared_key);
 
 foreach ($urls as $pattern => $action) {
-  $re = '!' . $pattern . '!msi';
+  $re = '!' . $pattern . '!u';
   if (preg_match($re, $q)) {
     $a = explode('.', $action);
     $class = $a[0];

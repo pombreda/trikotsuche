@@ -1,8 +1,8 @@
 <?php
 $urls = array(
   '^land/' => 'Countries.countries',
-  '^\w+/verein/' => 'Countries.teams',
-  '^\w+/spieler/' => 'Countries.players',
+  '^[\w\pL]+/verein/' => 'Countries.teams',
+  '^[\w\pL]+/spieler/' => 'Countries.players',
   'fanartikel/' => 'Countries.item',
   '' => 'Countries.index'
 );
