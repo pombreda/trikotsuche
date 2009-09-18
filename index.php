@@ -88,21 +88,22 @@ $result = null;
 
 if (false === ($result = $cache->get($cache_id))) {
   $result = $p->content();
-  if (isset($result)) {
+  if (isset($result->productsResult->productItem)) {
     $cache->set($cache_id, $result);
   }
   else {
     $result = null;
   }
 }
-
-if (isset($result->total)) {
-  $page['search_info'] = 'Suchergebnisse: ' . $result->total;
-  $page['content'] = zwsItemsHtml($result->productsResult->productItem, $p);
-  $page['pager'] = $p->pager($result->total, $zws_item_count);
-}
-elseif (isset($result->productsResult)) {
-  $page['content'] = var_export($result, true);
+if (isset($result->productsResult->productItem)) {
+  if (isset($result->total)) {
+    $page['search_info'] = 'Suchergebnisse: ' . $result->total;
+    $page['content'] = zwsItemsHtml($result->productsResult->productItem, $p);
+    $page['pager'] = $p->pager($result->total, $zws_item_count);
+  }
+  else {
+    $page['content'] = zwsItem($result->productsResult->productItem, $p);
+  }
 }
 
 $p->render($page, $template_page);

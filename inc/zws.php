@@ -110,7 +110,7 @@ EOF;
  * @return string
  */
 function zwsRenderItem($template, $item, $p) {
-  $item_path = $p->path() . 'fanartikel/' . $p->urify($item['name']) . '/' . $item['id'];
+  $item_path = $p->path() . 'fanartikel/' . $p->urify($item['name']) . '/' . $item['id'] . '/' . $p->padre();
   return sprintf(
     $template,
     $item['id'],
@@ -133,5 +133,13 @@ function zwsItemsHtml($items, $p) {
     $html .= zwsRenderItem($item_template, zwsItemAsArray($item), $p);
   }
   $html .= '</ul>';
+  return $html;
+}
+
+function zwsItem($item, $p) {
+  $html = '<div id="item">';
+  $item_template = zwsItemHtml();
+  $html .= zwsRenderItem($item_template, zwsItemAsArray($item), $p);
+  $html .= '</div>';
   return $html;
 }

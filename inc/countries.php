@@ -11,8 +11,7 @@ class Countries extends Page {
   
   public function index() {
     $this->topic('retro');
-    #$right = $this->menu('shirts', $this->indexList(), $this->path);
-    #$this->region('right', $right);
+    $this->search();
   }
   
   public function search() {
@@ -22,6 +21,7 @@ class Countries extends Page {
   }
   
   public function item() {
+    $this->padre($this->args(3));
     $this->topic($this->unurify($this->args(1)));
     $id = $this->args(2);
     $result = $this->zx->getProduct($id);
@@ -92,6 +92,7 @@ class Countries extends Page {
       'afrika' => array (
         'elfenbeinküste',
         'südafrika',
+        'kamerun',
         'nigeria',
         'ägypten',
       ),
