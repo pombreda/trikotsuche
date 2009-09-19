@@ -1,5 +1,5 @@
 <?php
-#error_reporting(E_ERROR|E_WARNING|E_NOTICE);
+error_reporting(E_ERROR|E_WARNING|E_NOTICE);
 
 // Bootstrap
 $path_root_fs = getcwd() . DIRECTORY_SEPARATOR;
@@ -16,8 +16,8 @@ include($path_conf . 'settings.php');
 include($path_conf . 'urls.php');
 include($path_inc . 'common.php');
 include($path_inc . 'page.php');
-include($path_inc . 'countries.php');
-include($path_inc . 'zws.php');
+include($path_inc . 'page.zws.php');
+include($path_inc . 'page.zws.trikot.php');
 
 // Libraries
 include($path_lib . 'cache.php');
@@ -58,7 +58,7 @@ foreach ($urls as $pattern => $action) {
     $p = new $class($path_root_www, $zx);
     $p->params($params);
     $p->$method();
-    $p->regions();
+    $p->boxes();
     break;
   }
 }
@@ -78,8 +78,8 @@ $page['search_display'] = $page['title'];
 $page['search_info'] = '';
 $page['content'] = 'Keine Ergebnisse';
 $page['pager'] = '';
-$page['left'] = $p->region('left');
-$page['right'] = $p->region('right');
+$page['left'] = $p->box('left');
+$page['right'] = $p->box('right');
 $page['footer'] = $site_footer;
 
 $cache_id = md5($q . $p->num());
@@ -96,13 +96,15 @@ if (false === ($result = $cache->get($cache_id))) {
   }
 }
 if (isset($result->productsResult->productItem)) {
+  $path = 'fanartikel';
+  $item = $result->productsResult->productItem;
   if (isset($result->total)) {
     $page['search_info'] = 'Suchergebnisse: ' . $result->total;
-    $page['content'] = zwsItemsHtml($result->productsResult->productItem, $p);
+    $page['content'] = $p->items_html($item, $path);
     $page['pager'] = $p->pager($result->total, $zws_item_count);
   }
   else {
-    $page['content'] = zwsItem($result->productsResult->productItem, $p);
+    $page['content'] = $p->item_page($item, $path);
   }
 }
 

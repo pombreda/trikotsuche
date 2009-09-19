@@ -118,7 +118,7 @@ class Cache {
    */
   public function set($cache_id, $data) {
     $path = $this->path($cache_id);
-    $this->createDir($path);
+    $this->create_dir($path);
     $cache_file = $path . $cache_id;
     if (!$fh = fopen($cache_file, 'w')) {
       return FALSE;
@@ -145,7 +145,7 @@ class Cache {
    * @param string $dir
    * @return bool
    */
-  public function createDir($dir) {
+  public function create_dir($dir) {
     if (!file_exists($dir)) {
       $old = umask(0);
       if (!mkdir($dir, self::UMASK, TRUE)) {

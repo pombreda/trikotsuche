@@ -3,6 +3,7 @@ $(function(){
   imp();
   linkHd();
   asyncReq();
+  tabMenu();
 });
 
 function linkHd() {
@@ -42,20 +43,33 @@ function pager(page){
 }
 
 function initNav() {
-  $('#nav .subnav').css('display', 'none');
+  $('#nav .subnav').hide();
   var selected = readCookie('selected-subnav');
   if (selected) {
-    $('#' + selected).css('display', 'block');
+    $('#' + selected).show();
   }
   else {
-    $('#nav .subnav:first').css('display', 'block');
+    $('#nav .subnav:first').show();
   }
   $('#nav .subnav-header').click(function(){
-    $('#nav .subnav').css('display', 'none');
+    $('#nav .subnav').hide();
     var subnav = $(this).next('.subnav');
     subnav.css('display', 'block');
     createCookie('selected-subnav',subnav.attr('id'));
   });
+}
+
+function tabMenu() {
+  $('#right ul.subnav').hide();
+  $('#right ul.subnav:first').show();
+  
+  var html = '<ul class="tab-menu">';
+  $('#right .subnav-header').each(function(){
+    html += '<li>' + $(this).html() + '</li>';
+    $(this).hide();
+  });
+  html += '</ul>';
+  $('#right').prepend(html);
 }
 
 /**

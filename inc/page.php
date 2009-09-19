@@ -10,17 +10,11 @@ abstract class Page {
   protected $num = 0;
   protected $content = '';
 
-  # Page regions
-  protected $left = '';
-  protected $right = '';
-  protected $footer = '';
-  
   private $args = array();
   
-  abstract protected function index();
-  abstract protected function item();
-  abstract protected function region($name, $content = '');
-  abstract protected function regions();
+//  abstract protected function index();
+//  abstract protected function item();
+//  abstract protected function boxes();
   
   public function __construct() {
     $q = '';
@@ -47,7 +41,7 @@ abstract class Page {
   }
   
   public function urify($uri) {
-    $uri = preg_replace('/[^\w\pL]/u', '-', trim($uri));
+    $uri = preg_replace('/[^\w\pL]+/u', '-', trim($uri));
     return urlencode(strtolower($uri));
   }
   
@@ -85,45 +79,43 @@ abstract class Page {
     return $this->params;
   }
 
+  public function box($name, $content = '') {
+    if (!isset($this->box->$name)) {
+      $this->box->$name = '';
+    }
+    if ($content) $this->box->$name = $content;
+    return $this->box->$name;
+  }
+  
   public function content($content = null) {
     if ($content)
       $this->content = $content;
     return $this->content;
   }
-  
-  public function left($left = null) {
-    if ($left)
-      $this->left = $left;
-    return $this->left;
-  }
-
-  public function right($right = null) {
-    if ($right)
-      $this->right = $right;
-    return $this->right;
-  }
-
-  public function footer($footer = null) {
-    if ($footer)
-      $this->footer = $footer;
-    return $this->footer;
-  }
 
   function render($page, $template) {
     header('Content-Type: text/html');
-    include ($template);
+    ob_start('ob_gzhandler');
+    include $template;
   }
 
-  function menu($id, $items, $path) {
+  function menu($items, $path, $id) {
     $html = sprintf('<div id="%s">', $id);
     foreach ($items as $header => $item) {
-      $html .= $this->menu_items($item, $header, $path);
+      $html .= $this->menu_items($item, $path, $header);
     }
     $html .= '</div>';
     return $html;
   }
+  
+  function menu_sub($items, $path, $id, $header) {
+    $html = sprintf('<div id="%s" class="submenu">', $id);
+    $html .= $this->menu_items($items, $path, $header);
+    $html .= '</div>';
+    return $html;
+  }
 
-  function menu_items($items, $header, $path) {
+  function menu_items($items, $path, $header) {
     $template = '<li><a href="%s">%s</a></li>';
     $html = '';
     $html .= sprintf('<h3 class="subnav-header">%s</h3>', ucwords($header));
