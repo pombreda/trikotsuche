@@ -110,3 +110,27 @@ margin:5px 0 15px;
 position:relative;
 top:0;
 }
+/**
+.tab-menu li {
+float:left;
+margin-right:1em;
+}
+ul.subnav {
+ clear:both;
+}
+#right {
+position:relative;
+}
+#right .submenu {
+position:absolute;
+}
+
+#right .submenu .subnav-header {
+margin-left:100px;
+position:absolute;
+left:200px;
+}
+#right .submenu .subnav-header:first-child {
+margin-left:0px;
+}
+*/

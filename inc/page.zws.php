@@ -29,7 +29,7 @@ abstract class PageZws extends Page {
       return false;
     }
     $i['id'] = $item->id;
-
+    
     if (!isset ($item->name)) {
       $i['name'] = ZWS_NO_DATA;
     } else {
@@ -54,8 +54,18 @@ abstract class PageZws extends Page {
       $i['price'] = check_plain($item->price);
     }
 
+    $i['url'] = '';
+    $params = $this->params();
+    $adspace_id = $params['adspace'];
     if (!isset ($item->url->adspace->_)) {
-      $i['url'] = '';
+      if (isset($item->url->adspace)) {
+        foreach ($item->url->adspace as $a) {
+          if ($a->id == $adspace_id) {
+            $i['url'] = check_uri($a->_);
+            break;
+          }
+        }
+      }
     } else {
       $i['url'] = check_uri($item->url->adspace->_);
     }
@@ -118,6 +128,7 @@ EOF;
     if (!$path) {
       $path = 'i';
     }
+
     $item_uri = $this->path() . $path . '/'
       . $this->urify($item['name']) . '/'
       . $item['id'] . '/' . $this->padre();

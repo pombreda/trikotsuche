@@ -49,7 +49,7 @@ class Trikot extends PageZws {
     $players = $this->playerList();
     if (isset($players[$parent])) {
       $path = $this->path() . $parent . '/spieler/';
-      $list = $this->menu_sub($players[$parent], $path, 'teams', 'Spieler');
+      $list = $this->menu_sub($players[$parent], $path, 'player', 'Spieler');
       $right .= $list;
     }
     $this->box('right', $right);
@@ -113,10 +113,12 @@ class Trikot extends PageZws {
         'maradona',
         'messi',
         'aguero',
+        'saviola',
         'tevez'
       ),
       'brasilien' => array(
         'pele',
+        'kaka',
         'ronaldinho',
         'ronaldo',
         'robinho'
@@ -126,27 +128,67 @@ class Trikot extends PageZws {
         'podolski',
         'gomez',
         'lahm',
-        'schweinsteiger'
+        'schweinsteiger',
+        'frings',
+        'kuranyi',
+        'klose',
+        'friedrich',
+        'mertesacker',
+        'odonkor',
+        'asamoah'
       ),
       'england' => array(
         'beckham',
+        'ferdinand',
         'rooney',
         'gerrard',
         'lampard',
-        'owen'
+        'owen',
+        'shearer',
+        'gascoigne',
+        'sheringham',
+        'fowler',
+      ),
+      'frankreich' => array(
+        'ribery',
+        'henry',
+        'zidane',
+        'cantona',
+        'platini'
+      ),
+      'holland' => array(
+        'van nistelrooy',
+        'Sneijder'
       ),
       'italien' => array (
         'toni',
-        'gattuso'
+        'gattuso',
+        'cannavaro',
+        'maldini',
+        'del piero',
+        'nesta',
+        'baggio',
+        'gilardino',
+        'materazzi',
+        'rossi',
+        'gentile',
+        'altobelli',
+        'conti',
+        'bergomi'
       ),
       'portugal' => array(
         'deco',
-        'ronaldo'
+        'ronaldo',
+        'simao',
+        'eusebio'
       ),
       'spanien' => array (
         'torres',
         'david villa',
-        'xavi'
+        'xavi',
+        'fabregas',
+        'sergio ramos',
+        'raul'
       ),
       'russland' => array(
         'arschawin'

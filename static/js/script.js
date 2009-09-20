@@ -3,7 +3,7 @@ $(function(){
   imp();
   linkHd();
   asyncReq();
-  tabMenu();
+//  tabMenu();
 });
 
 function linkHd() {
@@ -63,13 +63,21 @@ function tabMenu() {
   $('#right ul.subnav').hide();
   $('#right ul.subnav:first').show();
   
-  var html = '<ul class="tab-menu">';
-  $('#right .subnav-header').each(function(){
-    html += '<li>' + $(this).html() + '</li>';
-    $(this).hide();
+  $('#right .subnav-header').click(function(){
+    $('#right ul.subnav').hide();
+    $(this).next('ul.subnav').show();
+//    var id = $(this).html().toLowerCase();
+//    $('#' + id).show();
   });
-  html += '</ul>';
-  $('#right').prepend(html);
+  
+  $('#right .subnav-header').each(function(i, e) {
+    if (i > 0) {
+      $(e).css('position', 'absolute');
+      $(e).css('left', '100px');
+      $(this).next('ul.subnav').css('margin-top', '1em');
+    }
+  });
+
 }
 
 /**
