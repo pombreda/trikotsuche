@@ -53,8 +53,7 @@ class Trikot extends PageZws {
       $result = $this->menu_tags(
         $this->searchList(),
         $path,
-        'tags',
-        'Tags'      
+        'tags'
      );
     }
     $this->content($result);

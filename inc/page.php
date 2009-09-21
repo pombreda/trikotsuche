@@ -131,10 +131,13 @@ abstract class Page {
     return $html;
   }
   
-  function menu_tags($items, $path, $id, $header, $limit = 100) {
+  function menu_tags($items, $path, $id, $header = '', $limit = 100) {
     if (!check_array($items)) return false;
-    $template = '<li style="font-size:%dpx;"><a href="%s">%s</a></li>';    
-    $html = sprintf('<h3><a href="%s">Tags</a></h3>', $path);
+    $html = '';
+    if (!empty($header)) {
+      $html .= sprintf('<h3><a href="%s">Tags</a></h3>', $path);
+    }
+    $template = '<li style="font-size:%dpx;"><a href="%s">%s</a></li>';        
     $html .= sprintf('<ul class="tags" id="%s">', $id);
     $count = 0;
     $items = array_slice($items, 0, $limit);
