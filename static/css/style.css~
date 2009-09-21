@@ -108,7 +108,6 @@ margin:5px 0 15px;
 /* tags cloud */ 
 .tags li {
 float:left;
-margin-right:1em;
 }
 /* tab menu */
 /**

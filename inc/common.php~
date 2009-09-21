@@ -100,5 +100,6 @@ function check_array($var, $key = false) {
   if (!isset($var)) return false;
   if (false !== $key && isset($var[$key]) && is_array($var[$key])) return true;
   if (is_array($var)) return true;
-  return false;
+
+
 }

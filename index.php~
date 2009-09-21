@@ -58,6 +58,7 @@ foreach ($urls as $pattern => $action) {
     $p = new $class($path_root_www, $zx);
     $p->params($params);
     $p->$method();
+    $p->boxes();
     break;
   }
 }

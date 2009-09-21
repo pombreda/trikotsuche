@@ -23,7 +23,7 @@ class Trikot extends PageZws {
       $path,
       'tags',
       'Tags',
-      30
+      40
     );
     $this->box('right', $tags);
   }
