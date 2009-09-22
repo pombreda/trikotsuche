@@ -177,6 +177,7 @@ abstract class Page {
     return $html;
   }
 
+  # FIXME does not work on index page
   public function pager($total, $limit) {
     $html = '';
     $total = intval($total);

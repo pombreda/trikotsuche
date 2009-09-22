@@ -4,6 +4,11 @@ $(function(){
   linkHd();
   asyncReq();
   tabMenu();
+  
+  // FIXME hack
+  if (document.location.href == base_url) {
+    $('#pagination').hide();
+  }
 });
 
 function linkHd() {

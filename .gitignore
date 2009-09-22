@@ -3,3 +3,4 @@ static/html/
 lib/3rd/
 scripts/
 cache/
+*.tgz
