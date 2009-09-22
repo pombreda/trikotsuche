@@ -14,10 +14,11 @@ class Trikot extends PageZws {
   }
   
   public function index() {
-    $this->topic('retro');
     $this->search();
     $path = $this->path() . 'tags/';
     $list = $this->searchList();
+    #list($key1, $val1) = each($list);
+    $this->topic('fußball trikot');
     $tags = $this->menu_tags(
       $list,
       $path,
@@ -29,9 +30,20 @@ class Trikot extends PageZws {
   }
   
   public function search() {
-    $topic = $this->topic() . ' trikot';
-    $result = $this->client()->searchProducts($topic, $this->params(), $this->num(), 10);
+    if (isset($_POST['search'])) {
+      $topic = $this->urify($_POST['search']);
+      $redirect = $this->path() . 's/' . $topic;
+      header('Location: ' . $redirect);
+      exit();
+    }
+    $this->topic($this->args(1));
+    $result = $this->item_search();
     $this->content($result);
+  }
+  
+  public function item_search() {
+    return $this->client()->searchProducts(
+      $this->topic(), $this->params(), $this->num(), 10);
   }
 
   public function tags() {
@@ -72,7 +84,6 @@ class Trikot extends PageZws {
     if ($country) $this->country = $country;
     return $this->country;
   }
-  
 
   public function boxes() {
     $right = '';
@@ -81,21 +92,23 @@ class Trikot extends PageZws {
     if (isset($teams[$parent])) {
       $path = $this->path() . $parent . '/verein/';
       $list = $this->menu_sub($teams[$parent], $path, 'teams', 'Vereine');
-      $right .= $list;
+      $this->tab($parent, 'Vereine', $list);
     }
     $players = $this->playerList();
     if (isset($players[$parent])) {
       $path = $this->path() . $parent . '/spieler/';
       $list = $this->menu_sub($players[$parent], $path, 'players', 'Spieler');
-      $right .= $list;
+      $this->tab($parent, 'Spieler', $list);
     }
-    $this->box('right', $right);
+    $tabs = $this->tab_menu($parent);
+    $this->box('right', $tabs);
   }
 
   public function countries() {
-    $this->topic($this->args(1));
+    $this->topic($this->args(1) . ' trikot');
     $this->padre($this->args(1));
-    $this->search();
+    $result = $this->item_search();
+    $this->content($result);
     $this->boxes();
   }
   
@@ -140,10 +153,11 @@ class Trikot extends PageZws {
   }
 
   public function players() {
-    $this->topic($this->args(2));
+    $this->topic($this->args(2) . ' trikot');
     $this->padre($this->args(0));
-    $this->search();
-    $this->boxes();    
+    $result = $this->item_search();
+    $this->content($result);
+    $this->boxes();
   }
   
     public function playerList() {
@@ -238,10 +252,11 @@ class Trikot extends PageZws {
     }
 
     public function teams() {
-      $this->topic($this->args(2));
+      $this->topic($this->args(2) . ' trikot');
       $this->padre($this->args(0));
-      $this->search();
-      $this->boxes();      
+      $result = $this->item_search();
+      $this->content($result);
+      $this->boxes();
     }
     
     public function teamList() {

@@ -9,6 +9,7 @@ abstract class Page {
   protected $path = '';
   protected $num = 0;
   protected $content = '';
+  protected $tab = '';
 
   private $args = array();
   
@@ -147,6 +148,32 @@ abstract class Page {
       $html .= sprintf($template, ceil($value) * 1.4, $href, $tag);
     }
     $html .= '</ul>';
+    return $html;
+  }
+  
+  function tab($id, $header, $content) {
+    $this->tab[$id]['header'][] = $header;
+    $this->tab[$id]['content'][] = $content;
+  }
+  
+  function tab_menu($id) {
+    $html = '';
+    if (isset($this->tab[$id])) {
+      $header = $this->tab[$id]['header'];
+      $content = $this->tab[$id]['content'];
+      
+      $html .= sprintf('<ul id="%s" class="tab-menu">', $id);
+      $template = '<li id="tab-header-%s-%d" class="tab-header">%s</li>';
+      foreach ($header as $idx => $h) {
+        $html .= sprintf($template, $id, $idx, $h);
+      }
+      $html .= '</ul>';
+      
+      $template = '<div id="tab-content-%s-%d" class="tab-content">%s</div>';
+      foreach ($content as $idx => $c) {
+        $html .= sprintf($template, $id, $idx, $c);
+      }
+    }
     return $html;
   }
 

@@ -81,7 +81,8 @@ $page['left'] = $p->box('left');
 $page['right'] = $p->box('right');
 $page['footer'] = $site_footer;
 
-$cache_id = md5($q . $p->num());
+#var_dump($title, $q);
+$cache_id = md5($title . $q . $p->num());
 $cache = new Cache($path_cache, 86400, true);
 $result = null;
 

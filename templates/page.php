@@ -15,6 +15,15 @@
         <div id="site-name"><?= $page['site_name'] ?></div>
         <div id="site-slogan"><?= $page['site_slogan'] ?></div>
       </div>
+      <div id="search-box">
+        <form action="<?= $page['base_url']?>s/" method="post">
+          <fieldset>
+            <label for="search">Trikotsuche:</label>
+            <input id="search" type="text" name="search" value="" />
+            <input class="button" type="submit" value="Suche" />
+          </fieldset>
+        </form>
+      </div>
     </div>
   </div>
   
