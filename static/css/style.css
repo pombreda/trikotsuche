@@ -1,8 +1,6 @@
-/* YUI overrides */
-.yui-g .yui-gf {
- /* float:left; */
+body {
+font-family:Helvetica, sans-serif;
 }
-
 /* backgrounds */
 #ft {background:#f6f6f6;}
 
@@ -34,17 +32,21 @@ padding-left:14.8461em;
 width:50%
 }
 #site-name {
-font:bold 2.6em sans-serif;
+font-weight:bold;
+font-size:2.6em;
+
 }
 #site-slogan {
-font:bold 1.8em sans-serif;
+font-weight:bold;
+font-size:1.8em;
 }
 /* navigation */
 #nav {
-font:1.15em sans-serif;
+font-size:1.15em;
 }
 #nav .subnav-header {
-font: bold 1em sans-serif;
+font-weight:bold;
+font-size:1em;
 cursor:pointer;
 background: #eef4d3 url('../img/left.png') no-repeat center right;
 padding: .5em 1em;
@@ -111,7 +113,8 @@ float:left;
 width:70%;
 }
 #items h4 {
-font:.9em/1.2em sans-serif;
+font-size:.9em;
+line-height:1.2em;
 width:95%;
 margin:.2em 0;
 padding:0;
@@ -130,7 +133,8 @@ border:0.1em solid #efefef;
 }
 /* elements */
 h1, h2 {
-font:bold 1.2em sans-serif;
+font-weight:bold;
+font-size:1.2em;
 margin:5px 0 15px;
 }
 #top {
@@ -146,6 +150,10 @@ top:0;
 .tags li {
 float:left;
 margin-right:1em;
+line-height:1em;
+}
+.tags li a {
+text-decoration:none;
 }
 /* tab menu */
 li.tab-header {
