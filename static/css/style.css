@@ -46,7 +46,25 @@ font:1.15em sans-serif;
 #nav .subnav-header {
 font: bold 1em sans-serif;
 cursor:pointer;
+background: #eef4d3 url('../img/left.png') no-repeat center right;
+padding: .5em 1em;
+margin:.1em;
 }
+#nav .subnav-header.active {
+background-image: url('../img/down.png');
+}
+
+#nav .subnav {
+color:#069;
+background-color:#fefefe;
+padding-left:1em;
+font-weight:bold;
+}
+
+#nav .subnav a {
+text-decoration:none;
+}
+
 /* content top */
 #search-info {
 text-align:right;

@@ -52,16 +52,22 @@ function initNav() {
   var selected = readCookie('selected-subnav');
   if (selected) {
     $('#' + selected).show();
+    $('#' + selected).prev('.subnav-header').addClass('active');
   }
   else {
     $('#nav .subnav:first').show();
+    $('#nav .subnav-header:first').addClass('active');
   }
-  $('#nav .subnav-header').click(function(){
-    $('#nav .subnav').hide();
+
+  $("#nav .subnav-header").click(function(){
     var subnav = $(this).next('.subnav');
-    subnav.css('display', 'block');
+    $(this).toggleClass('active');
+    subnav.slideToggle(300);
+    subnav.siblings('.subnav').slideUp('slow');
+    $(this).siblings('.subnav-header').removeClass('active');
     createCookie('selected-subnav',subnav.attr('id'));
   });
+
 }
 
 function tabMenu() {

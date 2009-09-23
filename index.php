@@ -68,7 +68,6 @@ if (!$p) {
 }
 
 $title = ucwords(check_plain($p->topic()));
-
 $page['base_url'] = $path_root_www;
 $page['site_name'] = $site_name;
 $page['site_slogan'] = $site_slogan;

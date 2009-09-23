@@ -14,11 +14,14 @@ class Trikot extends PageZws {
   }
   
   public function index() {
-    $this->search();
     $path = $this->path() . 'tags/';
     $list = $this->searchList();
     #list($key1, $val1) = each($list);
+    
     $this->topic('fußball trikot');
+    $result = $this->item_search();
+    $this->content($result);
+    
     $tags = $this->menu_tags(
       $list,
       $path,
