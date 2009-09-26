@@ -18,7 +18,6 @@
       <div id="search-box">
         <form action="<?= $page['base_url']?>s/" method="post">
           <fieldset>
-            <label for="search">Trikotsuche:</label>
             <input id="search" type="text" name="search" value="" />
             <input class="button" type="submit" value="Suche" />
           </fieldset>

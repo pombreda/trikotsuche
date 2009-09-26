@@ -146,6 +146,11 @@ position:absolute;
 right:0;
 top:0;
 }
+#search {
+width:18em;
+font-size:1.2em;
+margin-top:.4em;
+}
 /* tags cloud */
 .tags li {
 float:left;
@@ -156,11 +161,31 @@ line-height:1em;
 text-decoration:none;
 }
 /* tab menu */
+ul.tab-menu {
+display:block;
+height:18px;
+width:100%;
+}
 li.tab-header {
-float:left;
-margin-right:3em;
+background:#F3F3F3 none repeat scroll 0 0;
+border:1px solid #ddd;
 cursor:pointer;
+float:left;
+font-size:1.2em;
+margin:0 0.4em -1px;
+padding:0.2em 0.9em;
+width:3.3em;
+}
+li.tab-header.active {
+border-bottom:1px solid #fff;
+background: #fff;
 }
 div.tab-content {
+border:1px solid #ddd;
 clear:both;
+padding:0.5em;
+}
+div.tab-content a {
+text-decoration:none;
+font-size:1em;
 }

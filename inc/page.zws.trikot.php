@@ -18,7 +18,7 @@ class Trikot extends PageZws {
     $list = $this->searchList();
     #list($key1, $val1) = each($list);
     
-    $this->topic('fußball trikot');
+    $this->topic('fußballtrikots');
     $result = $this->item_search();
     $this->content($result);
     
