@@ -3,9 +3,10 @@
  * Created on Sep 18, 2009
  *
  */
-define('ZWS_IMAGE_SMALL_URL', 'no-image-small.jpg');
-define('ZWS_IMAGE_MEDIUM_URL', 'no-image-medium.jpg');
-define('ZWS_IMAGE_LARGE_URL', 'no-image-large.jpg');
+#FIXME hard coded urls
+define('ZWS_IMAGE_SMALL_URL', 'http://www.trikotsuche.de/static/img/no-image-small.jpg');
+define('ZWS_IMAGE_MEDIUM_URL', 'http://www.trikotsuche.de/static/img/no-image-medium.jpg');
+define('ZWS_IMAGE_LARGE_URL', 'http://www.trikotsuche.de/static/img/no-image-large.jpg');
 define('ZWS_MANUFACTURER', 'N.A.');
 define('ZWS_NO_DATA', 'N.A.');
 
@@ -164,5 +165,43 @@ EOF;
       $item_template, $this->item_prepare($item), $path);
     $html .= '</div>';
     return $html;
+  }
+  
+  public function items_feed($items, $path = '') {
+    $xml = '';
+    $template = $this->feed_item_template();
+    $date = date('D, d M Y H:i:s T');
+    foreach ($items as $item) {
+      $i = $this->item_prepare($item);
+      $xml .= sprintf($template,
+        $i['name'],
+        $i['url'],
+        $i['manufacturer'],
+        $date,
+        $i['url'],
+        $i['image_large'],
+        'image',
+        $i['name'],
+        $i['manufacturer'],
+        $i['image_small']
+      );
+    }
+    return $xml;
+  }
+  
+  public function feed_item_template() {
+    return <<<EOF
+<item>
+<title>%s</title>
+<link>%s</link>
+<description>%s</description>
+<pubDate>%s</pubDate>
+<guid>%s</guid>
+<media:content url="%s" type="%s" />
+<media:title>%s</media:title>
+<media:description>%s</media:description>
+<media:thumbnail url="%s" />
+</item>
+EOF;
   }
 }

@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?= $page['title'] ?></title>
 <link rel="shortcut icon" href="<?= $page['path_img'] ?>favicon.ico" type="image/x-icon" />
+<link rel="alternate" type="application/rss+xml" title="RSS feed" href="<?= $page['rss_url'] ?>" />
 <link type="text/css" rel="stylesheet" media="all" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" />
 <link type="text/css" rel="stylesheet" media="all" href="<?= $page['path_css'] ?>style.css" />
 </head>

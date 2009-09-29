@@ -22,9 +22,13 @@ abstract class Page {
     if (isset($_REQUEST['q'])) {
       $q = $_REQUEST['q'];
     }
-
     if (isset($_REQUEST['page'])) {
       $this->num = $_REQUEST['page'];
+    }
+    
+    $this->format('html');
+    if (isset($_REQUEST['format'])) {
+      $this->format($_REQUEST['format']);
     }
     
     $this->args = explode('/', $q);
@@ -74,6 +78,12 @@ abstract class Page {
     return $this->topic;
   }
   
+  public function format($format = null) {
+    if ($format)
+      $this->format = $format;
+    return $this->format;
+  }
+  
   public function params($params = null) {
     if ($params)
       $this->params = $params;
@@ -94,8 +104,8 @@ abstract class Page {
     return $this->content;
   }
 
-  function render($page, $template) {
-    header('Content-Type: text/html');
+  function render($page, $template, $format = 'Content-Type: text/html') {
+    header($format);
     ob_start('ob_gzhandler');
     include $template;
   }

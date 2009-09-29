@@ -10,6 +10,7 @@ $path_lib3rd = $path_lib . '3rd' . DIRECTORY_SEPARATOR;
 $path_cache = $path_root_fs . 'cache' . DIRECTORY_SEPARATOR;
 $path_templates = $path_root_fs . 'templates' . DIRECTORY_SEPARATOR;
 $template_page = $path_templates . 'page.php';
+$template_rss = $path_templates . 'rss.php';
 
 // Includes
 include($path_conf . 'settings.php');
@@ -67,11 +68,16 @@ if (!$p) {
   exit();
 }
 
+$page_url = $path_root_www . $q;
+$rss_url = $page_url . '?format=rss';
+
 $title = ucwords(check_plain($p->topic()));
 $page['base_url'] = $path_root_www;
 $page['site_name'] = $site_name;
 $page['site_slogan'] = $site_slogan;
 $page['title'] = $title . ' - Trikots suchen und kaufen';
+$page['description'] = $page['title'] . ' - ' . $site_description;
+$page['url'] = $page_url;
 $page['search_display'] = $page['title'];
 $page['search_info'] = '';
 $page['content'] = 'Keine Ergebnisse';
@@ -79,6 +85,8 @@ $page['pager'] = '';
 $page['left'] = $p->box('left');
 $page['right'] = $p->box('right');
 $page['footer'] = $site_footer;
+$page['rss_url'] = $rss_url;
+$page['rss_date'] = date('D, d M Y H:i:s T');
 
 #var_dump($title, $q);
 $cache_id = md5($title . $q . $p->num());
@@ -96,6 +104,11 @@ if (isset($result->productsResult->productItem)) {
   $path = 'fanartikel';
   $item = $result->productsResult->productItem;
   if (isset($result->total)) {
+    if ('rss' ==$p->format()) {
+      $page['content'] = $p->items_feed($item, $path);
+      $p->render($page, $template_rss, 'Content-Type: text/xml; charset=utf-8');
+      exit();
+    }
     $page['search_info'] = 'Suchergebnisse: ' . $result->total;
     $page['content'] = $p->items_html($item, $path);
     $page['pager'] = $p->pager($result->total, $zws_item_count);
