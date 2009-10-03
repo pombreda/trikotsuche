@@ -115,6 +115,7 @@ class Trikot extends PageZws {
     $countries = $this->countryList();
     $players = $this->playerList();
     $teams = $this->teamList();
+    $search = $this->searchList();
     
     foreach ($countries as $continent => $cs) {
       foreach ($cs as $c) {
@@ -134,6 +135,10 @@ class Trikot extends PageZws {
           }
         }
       }
+    }
+    
+    foreach ($search as $term => $value) {
+      $items[] = $path . 'tags/' . $this->urify($term);
     }
     
     parent::xml_sitemap($items);

@@ -1,1 +1,11 @@
 Sitemap: http://www.trikotsuche.de/sitemap.xml
+
+User-agent: *
+Disallow: /test/
+Disallow: /templates/
+Disallow: /static/
+Disallow: /scripts/
+Disallow: /lib/
+Disallow: /inc/
+Disallow: /conf/
+Disallow: /cache/
