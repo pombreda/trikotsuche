@@ -106,6 +106,38 @@ class Trikot extends PageZws {
     $tabs = $this->tab_menu($parent);
     $this->box('right', $tabs);
   }
+  
+  /**
+   * Create link array for sitemap generation.
+   */
+  public function xml_sitemap() {
+    $items = array();
+    $countries = $this->countryList();
+    $players = $this->playerList();
+    $teams = $this->teamList();
+    
+    foreach ($countries as $continent => $cs) {
+      foreach ($cs as $c) {
+        $path = $this->path();
+        $c = $this->urify($c);
+        $items[] = $path . 'land/' . $c;
+        
+        if (isset($players[$c])) {
+          foreach ($players[$c] as $i) {
+            $items[] = $path . $c . '/spieler/' . $this->urify($i);
+          }
+        }
+        
+        if (isset($teams[$c])) {
+          foreach ($teams[$c] as $i) {
+            $items[] = $path . $c . '/verein/' . $this->urify($i);
+          }
+        }
+      }
+    }
+    
+    parent::xml_sitemap($items);
+  }
 
   public function countries() {
     $this->topic($this->args(1) . ' trikot');

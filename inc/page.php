@@ -213,4 +213,16 @@ abstract class Page {
     }
     return $html;
   }
+  
+  public function xml_sitemap($items) {
+    $xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+    $item_template = '<url><loc>%s</loc></url>';
+    foreach ($items as $item) {
+      $xml .= sprintf($item_template, $item);
+    }
+    $xml .= '</urlset>';
+    header('Content-Type: text/xml; charset=utf-8');
+    echo $xml;
+    exit();
+  }
 }

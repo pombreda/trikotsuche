@@ -3,7 +3,7 @@
  * Created on Sep 18, 2009
  *
  */
-#FIXME hard coded urls
+# FIXME hard coded urls
 define('ZWS_IMAGE_SMALL_URL', 'http://www.trikotsuche.de/static/img/no-image-small.jpg');
 define('ZWS_IMAGE_MEDIUM_URL', 'http://www.trikotsuche.de/static/img/no-image-medium.jpg');
 define('ZWS_IMAGE_LARGE_URL', 'http://www.trikotsuche.de/static/img/no-image-large.jpg');
@@ -180,10 +180,7 @@ EOF;
         $date,
         $i['url'],
         $i['image_large'],
-        'image',
-        $i['name'],
-        $i['manufacturer'],
-        $i['image_small']
+        'image/jpeg'
       );
     }
     return $xml;
@@ -196,12 +193,8 @@ EOF;
 <link>%s</link>
 <description>%s</description>
 <pubDate>%s</pubDate>
-<guid>%s</guid>
-<media:content url="%s" type="%s" />
-<media:title>%s</media:title>
-<media:description>%s</media:description>
-<media:thumbnail url="%s" />
-</item>
+<guid isPermaLink="true">%s</guid>
+<enclosure url="%s" type="%s" /></item>
 EOF;
   }
 }
