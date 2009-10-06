@@ -8,3 +8,5 @@ $zws = new Zws();
 $flickr = new Flickr();
 $cache = new Cache('.', 1);
 $datasource = new Datasource($zws, $cache);
+
+$datasource->search();

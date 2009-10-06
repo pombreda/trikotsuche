@@ -14,10 +14,25 @@ class Datasource {
    */
   protected $cache;
   
-  public function __construct($web_service, $cache) {
+  public function __construct($web_service, $cache = null) {
     $this->web_service = $web_service;
-    $this->cache = $cache;
-
-    var_dump($this);
+    if ($cache) {
+      $this->cache = $cache;
+    }
+  }
+  
+  public function search() {
+    switch ($this->web_service) {
+      case 'Zws':
+        break;
+    }
+    $request = $this->web_service->build_request();
+    $result = null;
+    if ($this->cache) {
+      if (!($result = $this->cache->get($request))) {
+        $result = $this->web_service->request($request);
+      }
+    }
+    return $result;
   }
 }
