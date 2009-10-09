@@ -1,4 +1,6 @@
 <?php
+define('PATH_LIB', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+
 abstract class WebService {
   
   var $request_uri = '';
