@@ -1,8 +1,4 @@
 <?php
-/*
- * Created on Sep 18, 2009
- *
- */
 # FIXME hard coded urls
 define('ZWS_IMAGE_SMALL_URL', 'http://www.trikotsuche.de/static/img/no-image-small.jpg');
 define('ZWS_IMAGE_MEDIUM_URL', 'http://www.trikotsuche.de/static/img/no-image-medium.jpg');
@@ -113,9 +109,22 @@ abstract class PageZws extends Page {
   <div class="right">
     <h4>%s</h4>
     <div class="info">Hersteller: %s</div>
-    <div class="info"><a href="%s">%s %s bei %s</a></div>
+    <div class="link" rel="nofollow"><a href="%s">%s %s bei %s</a></div>
   </div>
 </li>
+EOF;
+  }
+  
+  function item_page_html() {
+    return<<<EOF
+<div class="left">
+  <div class="image"><img class="large" src="%s" alt="%s" /></div>
+</div>
+<div class="right">
+  <h4>%s</h4>
+  <div class="info">Hersteller: %s</div>
+  <div class="link" rel="nofollow"><a href="%s">%s %s bei %s</a></div>
+</div>
 EOF;
   }
 
@@ -146,23 +155,35 @@ EOF;
       $item['currency'],
       $item['program']);
   }
+  
+  function item_page_render($template, $item) {
+    return sprintf(
+      $template,
+      $item['image_large'],
+      $item['name'],
+      $item['name'],
+      $item['manufacturer'],
+      $item['url'],
+      $item['price'],
+      $item['currency'],
+      $item['program']);
+  }
 
   function items_html($items, $path = '') {
     $html = '<ul id="items">';
-    $item_template = $this->item_html();
+    $template = $this->item_html();
     foreach ($items as $item) {
       $html .= $this->item_render(
-        $item_template, $this->item_prepare($item), $path);
+        $template, $this->item_prepare($item), $path);
     }
     $html .= '</ul>';
     return $html;
   }
 
   public function item_page($item, $path = '') {
-    $html = '<div id="item">';
-    $item_template = $this->item_html();
-    $html .= $this->item_render(
-      $item_template, $this->item_prepare($item), $path);
+    $html = '<div id="item-page">';
+    $template = $this->item_page_html();
+    $html .= $this->item_page_render($template, $this->item_prepare($item));
     $html .= '</div>';
     return $html;
   }
