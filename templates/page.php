@@ -33,10 +33,10 @@
         <div class="yui-b">
         
           <div id="content-top" class="yui-g">
-            <div id="search-display" class="yui-u first">
+            <div id="search-display">
               <h1><?= $page['search_display'] ?></h1>
             </div>
-            <div id="search-info" class="yui-u">
+            <div id="search-info">
               <?= $page['search_info'] ?>
             </div>
           </div>

@@ -68,7 +68,13 @@ text-decoration:none;
 }
 
 /* content top */
+#content-top {
+position:relative;
+}
 #search-info {
+position:absolute;
+top:0;
+right:0;
 text-align:right;
 padding:5px 0;
 }
