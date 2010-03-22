@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>zanox Web Services - Contextual Product Search</title>
+  <script type="text/javascript" src="../static/js/zws.js"></script>
+ </head>
+ <body>
+  <h1>zanox Web Services - Contextual Product Search</h1>
+  <div id="zxAdList"></div> <!-- // DIV HTML element to be filled with product information -->
+  <script type="text/javascript">
+// creating an unordered list <ul id="theList"></ul> 
+   var theList = document.createElement("ul");
+   theList.setAttribute("id","theList");
+// accessing the existing div element with the ID "zxAdList" 
+   var zxAdList = document.getElementById('zxAdList');
+// adding theList to zxAdList
+   zxAdList.appendChild(theList);
+// performing the zanox search
+//   Zws.productSearch('2009-02-01', 'BE94C4947839E8AB4D67', null, null, '660', 0, 1000, null, 0, 5, 'red towel', 'Zws.handler');
+//  Zws.productSearch('2009-02-01', 'FBB4B38441C9AB8DF94B', null, null, '660', 0, 1000, null, 0, 5, 'red towel', 'Zws.handler');
+
+</script>
+</body>
+</html>
