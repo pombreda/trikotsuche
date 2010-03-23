@@ -21,7 +21,11 @@ class Zws extends WebService {
     $this->client->setPublicKey($public_key);
     $this->adspace_id = $adspace_id;
   }
-  
+
+  /**
+   * Perform a search via Zanox Web Service and return result as a
+   * canonicalized array.
+   */
   public function search($search, $page = 0, $limit = 10) {
     # how awful
     $result = json_decode($this->client->searchProducts(
@@ -49,6 +53,10 @@ class Zws extends WebService {
     return $items;
   }
   
+  /**
+   * Request a single product from the Zanox Web Service and return result as a
+   * canonicalized array.
+   */
   public function getProduct($id) {
     try {
       $result = json_decode($this->client->getProduct($id, $this->adspace_id));
@@ -63,6 +71,9 @@ class Zws extends WebService {
     return false;
   }
   
+  /**
+   * Canonicalize an item.
+   */
   private function item_prepare($item) {
     if (!isset ($item->{'@id'})) {
       return false;

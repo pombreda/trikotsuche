@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Main PageZws subclass for www.trikotsuche.de
  */
 class Trikot extends PageZws {
   public function __construct($path, $client) {
@@ -13,6 +13,9 @@ class Trikot extends PageZws {
     $this->box('left', $left);
   }
   
+  /**
+   * Display index page.
+   */
   public function index() {
     $path = $this->path() . 'tags/';
     $list = $this->searchList();
@@ -30,6 +33,9 @@ class Trikot extends PageZws {
     $this->box('right', $tags);
   }
   
+  /**
+   * Display search results.
+   */
   public function search() {
     if (isset($_POST['search'])) {
       $topic = $this->urify($_POST['search']);
@@ -42,11 +48,17 @@ class Trikot extends PageZws {
     $this->content($result);
   }
   
+  /**
+   * Perform a search.
+   */
   public function item_search() {
     return $this->client()->search(
       $this->topic(), $this->num(), 10);
   }
 
+  /**
+   * Display tags page.
+   */
   public function tags() {
     $topic = $this->args(1);
     $path = $this->path() . 'tags/';
@@ -72,6 +84,9 @@ class Trikot extends PageZws {
     $this->content($result);
   }
   
+  /**
+   * Display a single item.
+   */
   public function item() {
     $this->padre($this->args(3));
     $this->topic($this->unurify($this->args(1)));
@@ -81,11 +96,17 @@ class Trikot extends PageZws {
     $this->boxes();
   }
   
+  /**
+   * Country getter/setter.
+   */
   public function country($country = null) {
     if ($country) $this->country = $country;
     return $this->country;
   }
 
+  /**
+   * Add content to the boxes of a page, i.e. left and right sidebars.
+   */
   public function boxes() {
     $right = '';
     $parent = $this->padre();
