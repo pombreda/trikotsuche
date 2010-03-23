@@ -148,7 +148,7 @@ abstract class Page {
     if (!empty($header)) {
       $html .= sprintf('<h3><a href="%s">Tags</a></h3>', $path);
     }
-    $template = '<li style="font-size:%dpx;"><a href="%s">%s</a></li>';        
+    $template = '<li style="font-size:%dpx;"><a href="%s">%s</a></li>';
     $html .= sprintf('<ul class="tags" id="%s">', $id);
     $count = 0;
     $items = array_slice($items, 0, $limit);

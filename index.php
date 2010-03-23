@@ -22,7 +22,8 @@ include($path_inc . 'page.zws.trikot.php');
 
 // Libraries
 include($path_lib . 'cache.php');
-include($path_lib3rd . 'zx_php_client_2009-02-01/zanox-api.class.php');
+include($path_lib . 'webservice.php');
+include($path_lib . 'zws.php');
 
 $path_root_www = 'http://' . $_SERVER['HTTP_HOST'] . base_path();
 $path_static = $path_root_www . 'static/';
@@ -46,9 +47,7 @@ if (isset($_REQUEST['q'])) {
   $q = $_REQUEST['q'];
 }
 
-$params = array('region' => $zws_region, 'adspace' => $zws_adspace_id);
-$zx = ZanoxAPI::factory('soap');
-$zx->setMessageCredentials($zws_application_id, $zws_shared_key);
+$zws = new Zws($zws_connect_id, $zws_public_key, $zws_secret_key, $zws_adspace_id);
 
 foreach ($urls as $pattern => $action) {
   $re = '!' . $pattern . '!u';
@@ -56,8 +55,8 @@ foreach ($urls as $pattern => $action) {
     $a = explode('.', $action);
     $class = $a[0];
     $method = $a[1];
-    $p = new $class($path_root_www, $zx);
-    $p->params($params);
+    $p = new $class($path_root_www, $zws);
+    #$p->params($params);
     $p->$method();
     break;
   }

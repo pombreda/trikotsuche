@@ -15,84 +15,6 @@ abstract class PageZws extends Page {
   protected function client() {
     return $this->client;
   }
-  /**
-   * Get ZWS item as array.
-   *
-   * @param object $item
-   * @return array $i
-   */
-  private function item_prepare($item) {
-    if (!isset ($item->id)) {
-      return false;
-    }
-    $i['id'] = $item->id;
-    
-    if (!isset ($item->name)) {
-      $i['name'] = ZWS_NO_DATA;
-    } else {
-      $i['name'] = check_plain($item->name);
-    }
-
-    if (!isset ($item->program->_)) {
-      $i['program'] = ZWS_NO_DATA;
-    } else {
-      $i['program'] = check_plain($item->program->_);
-    }
-
-    if (!isset ($item->currency)) {
-      $i['currency'] = ZWS_NO_DATA;
-    } else {
-      $i['currency'] = check_plain($item->currency);
-    }
-
-    if (!isset ($item->price)) {
-      $i['price'] = ZWS_NO_DATA;
-    } else {
-      $i['price'] = check_plain($item->price);
-    }
-
-    $i['url'] = '';
-    $params = $this->params();
-    $adspace_id = $params['adspace'];
-    if (!isset ($item->url->adspace->_)) {
-      if (isset($item->url->adspace)) {
-        foreach ($item->url->adspace as $a) {
-          if ($a->id == $adspace_id) {
-            $i['url'] = check_uri($a->_);
-            break;
-          }
-        }
-      }
-    } else {
-      $i['url'] = check_uri($item->url->adspace->_);
-    }
-
-    if (!isset ($item->manufacturer)) {
-      $i['manufacturer'] = ZWS_MANUFACTURER;
-    } else {
-      $i['manufacturer'] = check_plain($item->manufacturer);
-    }
-
-    if (!isset ($item->image->small)) {
-      $i['image_small'] = ZWS_IMAGE_SMALL_URL;
-    } else {
-      $i['image_small'] = check_uri($item->image->small);
-    }
-
-    if (!isset ($item->image->medium)) {
-      $i['image_medium'] = ZWS_IMAGE_MEDIUM_URL;
-    } else {
-      $i['image_medium'] = check_uri($item->image->medium);
-    }
-
-    if (!isset ($item->image->large)) {
-      $i['image_large'] = ZWS_IMAGE_LARGE_URL;
-    } else {
-      $i['image_large'] = check_uri($item->image->large);
-    }
-
-    return $i;
-  }
 
   /**
    * Get HTML template for single item.
@@ -136,7 +58,7 @@ EOF;
    */
   function item_render($template, $item, $path = '') {
     if (!$path) {
-      $path = 'i';
+      $path = 'fanartikel';
     }
 
     $item_uri = $this->path() . $path . '/'
@@ -174,7 +96,7 @@ EOF;
     $template = $this->item_html();
     foreach ($items as $item) {
       $html .= $this->item_render(
-        $template, $this->item_prepare($item), $path);
+        $template, $item, $path);
     }
     $html .= '</ul>';
     return $html;
@@ -183,7 +105,7 @@ EOF;
   public function item_page($item, $path = '') {
     $html = '<div id="item-page">';
     $template = $this->item_page_html();
-    $html .= $this->item_page_render($template, $this->item_prepare($item));
+    $html .= $this->item_page_render($template, $item);
     $html .= '</div>';
     return $html;
   }
@@ -193,7 +115,7 @@ EOF;
     $template = $this->feed_item_template();
     $date = date('D, d M Y H:i:s T');
     foreach ($items as $item) {
-      $i = $this->item_prepare($item);
+      $i = $item;
       $xml .= sprintf($template,
         $i['name'],
         $i['url'],

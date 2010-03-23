@@ -1,5 +1,5 @@
 <?php
-include PATH_LIB . '3rd' . DIRECTORY_SEPARATOR . 'zxapiclient_2009_07_01' . DIRECTORY_SEPARATOR . 'ApiClient.php';
+include dirname(__file__) . DIRECTORY_SEPARATOR . '3rd' . DIRECTORY_SEPARATOR . 'zxapiclient_2009_07_01' . DIRECTORY_SEPARATOR . 'ApiClient.php';
 
 class Zws extends WebService {
   /**
@@ -24,7 +24,7 @@ class Zws extends WebService {
   
   public function search($search, $page = 0, $limit = 10) {
     # how awful
-    $result = $this->client->searchProducts(
+    $result = json_decode($this->client->searchProducts(
       $search,
       'phrase',
       null,
@@ -37,14 +37,30 @@ class Zws extends WebService {
       $this->adspace_id,
       $page,
       $limit
-    );
-    $items = json_decode($result)->productItems->productItem;
-var_dump($result);
-    foreach ($items as $item) {
-var_dump($item);
-      $i = $this->item_prepare($item);
-var_dump($i);die;
+    ));
+
+    $items = array();
+    if ($result->total) {
+      $i = $result->productItems->productItem;
+      foreach ($i as $item) {
+        $items[] = $this->item_prepare($item);
+      }
     }
+    return $items;
+  }
+  
+  public function getProduct($id) {
+    try {
+      $result = json_decode($this->client->getProduct($id, $this->adspace_id));
+      if ($result->productItem) {
+        return $this->item_prepare($result->productItem);
+      }
+    }
+    catch (Exception $e) {
+      # TODO log exceptions
+      #echo 'Caught exception: ',  $e->getMessage(), "\n";
+    }
+    return false;
   }
   
   private function item_prepare($item) {
