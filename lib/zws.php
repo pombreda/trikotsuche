@@ -45,6 +45,11 @@ class Zws extends WebService {
 
     $items = array();
     if ($result->total) {
+      $this->result_meta(array(
+        'page' => $result->page,
+        'items' => $result->items,
+        'total' => $result->total
+      ));
       $i = $result->productItems->productItem;
       foreach ($i as $item) {
         $items[] = $this->item_prepare($item);
@@ -104,21 +109,18 @@ class Zws extends WebService {
       $i['price'] = check_plain($item->price);
     }
     
-    if (!isset ($item->image->small)) {
-      return false;
-    } else {
+    $i['image_small'] = '';
+    if (isset ($item->image->small)) {
       $i['image_small'] = check_uri($item->image->small);
     }
 
-    if (!isset ($item->image->medium)) {
-      return false;
-    } else {
+    $i['image_medium'] = '';
+    if (isset ($item->image->medium)) {
       $i['image_medium'] = check_uri($item->image->medium);
     }
 
-    if (!isset ($item->image->large)) {
-      return false;
-    } else {
+    $i['image_large'] = '';
+    if (isset ($item->image->large)) {
       $i['image_large'] = check_uri($item->image->large);
     }
 
@@ -137,9 +139,8 @@ class Zws extends WebService {
       }
     }
 
-    if (!isset ($item->manufacturer)) {
-      $i['manufacturer'] = '';
-    } else {
+    $i['manufacturer'] = '';
+    if (isset ($item->manufacturer)) {
       $i['manufacturer'] = check_plain($item->manufacturer);
     }
 

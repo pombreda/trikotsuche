@@ -20,7 +20,7 @@ class Trikot extends PageZws {
     $path = $this->path() . 'tags/';
     $list = $this->searchList();
     $this->topic('fußball trikots');
-    $result = $this->items_html($this->item_search());
+    $result = $this->item_search();
     $this->content($result);
     
     $tags = $this->menu_tags(
@@ -44,7 +44,7 @@ class Trikot extends PageZws {
       exit();
     }
     $this->topic($this->args(1));
-    $result = $this->items_html($this->item_search());
+    $result = $this->item_search();
     $this->content($result);
   }
   
@@ -64,7 +64,7 @@ class Trikot extends PageZws {
     $path = $this->path() . 'tags/';
     if ($topic) {
       $this->topic($topic);
-      $result = $this->items_html($this->item_search());
+      $result = $this->item_search();
       $this->box('right', $this->menu_tags(
         $this->searchList(),
         $path,
@@ -91,7 +91,7 @@ class Trikot extends PageZws {
     $this->padre($this->args(3));
     $this->topic($this->unurify($this->args(1)));
     $id = $this->args(2);
-    $result = $this->item_page($this->client()->getProduct($id));
+    $result = $this->client()->getProduct($id);
     $this->content($result);
     $this->boxes();
   }
@@ -166,7 +166,7 @@ class Trikot extends PageZws {
   public function countries() {
     $this->topic($this->args(1) . ' trikot');
     $this->padre($this->args(1));
-    $result = $this->items_html($this->item_search());
+    $result = $this->item_search();
     $this->content($result);
     $this->boxes();
   }
@@ -327,7 +327,7 @@ class Trikot extends PageZws {
   public function players() {
     $this->topic($this->args(2) . ' trikot');
     $this->padre($this->args(0));
-    $result = $this->items_html($this->item_search());
+    $result = $this->item_search();
     $this->content($result);
     $this->boxes();
   }
@@ -425,7 +425,7 @@ class Trikot extends PageZws {
   public function teams() {
     $this->topic($this->args(2) . ' trikot');
     $this->padre($this->args(0));
-    $result = $this->items_html($this->item_search());
+    $result = $this->item_search();
     $this->content($result);
     $this->boxes();
   }

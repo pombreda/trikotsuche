@@ -79,6 +79,9 @@ EOF;
   }
   
   function item_page_render($template, $item) {
+    if (!isset($item['image_large'])) {
+      $item['image_large'] = ZWS_IMAGE_LARGE_URL;
+    }
     return sprintf(
       $template,
       $item['image_large'],
@@ -129,6 +132,9 @@ EOF;
     return $xml;
   }
   
+  /**
+   * FIXME use media:rss instead of enclosure, enclosure requires length
+   */
   public function feed_item_template() {
     return <<<EOF
 <item>

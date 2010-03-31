@@ -87,39 +87,38 @@ $page['footer'] = $site_footer;
 $page['rss_url'] = $rss_url;
 $page['rss_date'] = date('D, d M Y H:i:s T');
 
-#var_dump($title, $q);
 $cache_id = md5($title . $q . $p->num());
 $cache = new Cache($path_cache, 86400, true);
 $result = null;
 
 if (false === ($result = $cache->get($cache_id))) {
   $result = $p->content();
-  if (is_array($result) || is_object($result)) {
-    $cache->set($cache_id, $result);
+  if (is_array($result)) {
+    # remove false values from result array
+    $result = array_filter($result);
+    if (!empty($result)) {
+      $cache->set($cache_id, $result);
+    }
   }
 }
 
-if (isset($result->productsResult->productItem)) {
-  $path = 'fanartikel';
-  $item = $result->productsResult->productItem;
-  if (isset($result->total)) {
-    if ('rss' ==$p->format()) {
-      $page['content'] = $p->items_feed($item, $path);
+$path = 'fanartikel';
+$meta = $zws->result_meta();
+if($result) {
+  if (empty($meta)) {
+    $page['content'] = $p->item_page($result, $path);
+  }
+  else {
+    if ('rss' == $p->format()) {
+      $page['content'] = $p->items_feed($result, $path);
       $p->render($page, $template_rss, 'Content-Type: text/xml; charset=utf-8');
       exit();
     }
-    $page['search_info'] = 'Suchergebnisse: ' . $result->total;
-    $page['content'] = $p->items_html($item, $path);
-    $page['pager'] = $p->pager($result->total, $zws_item_count);
+    $total = $meta['total'];
+    $page['search_info'] = 'Suchergebnisse: ' . $total;
+    $page['content'] = $p->items_html($result);
+    $page['pager'] = $p->pager($total, 10);
   }
-  else {
-    $page['content'] = $p->item_page($item, $path);
-  }
-}
-elseif (is_string($result)) {
-  $page['content'] = $result;
 }
 
-#var_dump($page['content']);
-#debug_print_backtrace();
 $p->render($page, $template_page);
