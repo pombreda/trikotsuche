@@ -60,10 +60,12 @@ EOF;
     if (!$path) {
       $path = 'fanartikel';
     }
-
     $item_uri = $this->path() . $path . '/'
       . $this->urify($item['name']) . '/'
       . $item['id'] . '/' . $this->padre();
+    if (!$item['image_small']) {
+      $item['image_small'] = ZWS_IMAGE_SMALL_URL;
+    }
     return sprintf(
       $template,
       $item['id'],
@@ -79,7 +81,7 @@ EOF;
   }
   
   function item_page_render($template, $item) {
-    if (!isset($item['image_large'])) {
+    if (!$item['image_large']) {
       $item['image_large'] = ZWS_IMAGE_LARGE_URL;
     }
     return sprintf(

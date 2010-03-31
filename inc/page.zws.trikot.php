@@ -164,9 +164,14 @@ class Trikot extends PageZws {
   }
 
   public function countries() {
-    $this->topic($this->args(1) . ' trikot');
-    $this->padre($this->args(1));
+    $topic = $this->args(1);
+    $this->topic($topic . ' trikot');
+    $this->padre($topic);
     $result = $this->item_search();
+    if (!$result) {
+      $this->topic($topic);
+      $result = $this->item_search();
+    }
     $this->content($result);
     $this->boxes();
   }
@@ -304,7 +309,7 @@ class Trikot extends PageZws {
         'indien',
         'malediven',
         'nepal',
-        'pakistab',
+        'pakistan',
         'sri lanka',
         'brunei',
         'indonesien',
@@ -325,9 +330,14 @@ class Trikot extends PageZws {
   }
 
   public function players() {
-    $this->topic($this->args(2) . ' trikot');
+    $topic = $this->args(2);
+    $this->topic($topic . ' trikot');
     $this->padre($this->args(0));
     $result = $this->item_search();
+    if (!$result) {
+      $this->topic($topic);
+      $result = $this->item_search();
+    }
     $this->content($result);
     $this->boxes();
   }
@@ -348,20 +358,31 @@ class Trikot extends PageZws {
         'ronaldo',
         'robinho'
       ),
+      'dänemark' => array (
+        'bendtner'
+      ),
       'deutschland' => array (
+        'asamoah',
         'ballack',
-        'podolski',
-        'gomez',
-        'lahm',
-        'schweinsteiger',
-        'lehmann',
-        'frings',
-        'kuranyi',
-        'klose',
+        'cacau',
         'friedrich',
+        'frings',
+        'gentner',
+        'gomez',
+        'hitzlsperger',
+        'klose',
+        'kuranyi',
+        'lahm',
+        'lehmann',
+        'marin',
         'mertesacker',
         'odonkor',
-        'asamoah'
+        'özil',
+        'podolski',
+        'schäfer',
+        'schweinsteiger',
+        'trochowski',
+        'westermann'
       ),
       'england' => array(
         'beckham',
@@ -402,11 +423,21 @@ class Trikot extends PageZws {
         'conti',
         'bergomi'
       ),
+      'kroatien' => array(
+        'boksic',
+        'klasnic',
+        'prso',
+        'suker'
+      ),
       'portugal' => array(
         'deco',
         'ronaldo',
         'simao',
         'eusebio'
+      ),
+      'russland' => array(
+        'arshavin',
+        'pavlyuchenko'
       ),
       'spanien' => array (
         'torres',
@@ -416,8 +447,8 @@ class Trikot extends PageZws {
         'sergio ramos',
         'raul'
       ),
-      'russland' => array(
-        'arshavin'
+      'ukraine' => array(
+        'shevchenko'
       )
     );
   }

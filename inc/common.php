@@ -102,3 +102,7 @@ function check_array($var, $key = false) {
   if (is_array($var)) return true;
   return false;
 }
+
+function not_false($a) {
+  return false !== $a;
+}

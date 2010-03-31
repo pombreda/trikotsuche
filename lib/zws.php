@@ -44,7 +44,7 @@ class Zws extends WebService {
     ));
 
     $items = array();
-    if ($result->total) {
+    if (isset($result->total) && isset($result->productItems->productItem)) {
       $this->result_meta(array(
         'page' => $result->page,
         'items' => $result->items,
@@ -140,7 +140,7 @@ class Zws extends WebService {
     }
 
     $i['manufacturer'] = '';
-    if (isset ($item->manufacturer)) {
+    if (isset($item->manufacturer)) {
       $i['manufacturer'] = check_plain($item->manufacturer);
     }
 

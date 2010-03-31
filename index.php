@@ -95,7 +95,7 @@ if (false === ($result = $cache->get($cache_id))) {
   $result = $p->content();
   if (is_array($result)) {
     # remove false values from result array
-    $result = array_filter($result);
+    $result = array_filter($result, 'not_false');
     if (!empty($result)) {
       $cache->set($cache_id, $result);
     }
