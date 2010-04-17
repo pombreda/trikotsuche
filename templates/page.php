@@ -68,7 +68,7 @@
   </div>
 </div>
 <script type="text/javascript">var base_url = '<?= $page['base_url'] ?>';</script>
-<script type="text/javascript" src="http://jqueryjs.googlecode.com/files/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<?= $page['file_js'] ?>"></script>
 </body>
 </html>
