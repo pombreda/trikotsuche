@@ -13,8 +13,8 @@ var ZX = {
       var i = items[i].image.small;
 
       html += '<div class="zx_item">'
-        + '<a href="'+l+'" title="'+d+'"><img src="'+i+'" alt="'+n+'" /></a>'
-        + '<h3><a href="'+l+'" title="'+d+'">'+n+'</a></h3>'
+        + '<a target="_top" href="'+l+'" title="'+d+'"><img src="'+i+'" alt="'+n+'" /></a>'
+        + '<h3><a target="_top" href="'+l+'">'+n+'</a></h3>'
         + '<ul>'
         + '<li>Hersteller: '+m+'</li>'
         + '<li>Preis: '+p+' '+c+'</li>'
