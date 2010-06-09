@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:widget="http://www.netvibes.com/ns/">
+  <head>
+    <meta name="author" content="Ramiro Gómez" />
+    <meta name="description" content="A descriptive description" />
+    <meta name="apiVersion" content="1.0" />
+    <meta name="autoRefresh" content="60" />
+    <meta name="debugMode" content="true" />
+    <link rel="stylesheet" type="text/css" href="http://www.netvibes.com/themes/uwa/style.css" />
+    <script type="text/javascript" src="http://www.netvibes.com/js/UWA/load.js.php?env=Standalone"></script>
+    <title>Fußball-WM Trikots</title>
+    <link rel="icon" type="image/png" href="http://www.torlaune.de/favicon.ico" />
+
+    <style type="text/css">
+      #addto{margin:5px auto;}
+      #addto br{display:none;}
+      *{margin:0;padding:0;}
+      #zx_items{height:300px;width:200px;}
+      #zx_items h3 {height:20px;width:200px;overflow:hidden;}
+      #zx_items a:link,
+      #zx_items a:visited{border:0;color:blue;}
+      #zx_items ul li{list-style-type:none;background:none;}
+      .zx_item{height:90px;width:200px;overflow:hidden;}
+      .zx_img,
+      .zx_img{float:left;width:49%;}
+      .zx_img{text-align:center;}
+      .zx_img img{height:85px;width:75px;}
+      .clear{clear:both;}
+    </style>
+
+    <script type="text/javascript">
+      var ZX = {
+        'callback' : function(json) {
+          var html = '';
+          var items = json.productItems.productItem;
+          if (1 < json.items) {
+            for (i in items) {
+              if (ZX.checkItem(items[i])) {
+                var n = items[i].name;
+                var d = items[i].descriptionLong;
+                var l = items[i].trackingLinks.trackingLink.ppc;
+                var m = items[i].manufacturer;
+                var p = items[i].price;
+                var c = items[i].currency;
+                var s = items[i].program.$;
+                var i = items[i].image.small;
+                html += ZX.renderItem(n, d, l, m, p, c, s, i);
+              }
+            }
+          }
+          else if (1 == json.items && ZX.checkItem(items)) {
+            var n = items.name;
+            var d = items.descriptionLong;
+            var l = items.trackingLinks.trackingLink.ppc;
+            var m = items.manufacturer;
+            var p = items.price;
+            var c = items.currency;
+            var s = items.program.$;
+            var i = items.image.small;
+            html += ZX.renderItem(n, d, l, m, p, c, s, i);
+          }
+          document.getElementById('zx_items').innerHTML=html;
+        },
+        'checkItem' : function(i) {
+          if ('undefined' == typeof i.@id
+            || 'undefined' == typeof i.name
+            || 'undefined' == typeof i.descriptionLong
+            || 'undefined' == typeof i.trackingLinks
+            || 'undefined' == typeof i.manufacturer
+            || 'undefined' == typeof i.price
+            || 'undefined' == typeof i.program
+            || 'undefined' == typeof i.image) {
+            return false;
+          }
+          return true;
+        },
+        'renderItem' : function(n, d, l, m, p, c, s, i) {
+          return '<div class="zx_item">'
+            + '<div class="zx_img"><a target="_top" href="'+l+'" title="'+d+'"><img src="'+i+'" alt="'+n+'" /></a></div>'
+            + '<div class="zx_info"><h3><a target="_top" href="'+l+'" title="'+n+'">'+n+'</a></h3>'
+            + '<ul>'
+            + '<li>Hersteller: '+m+'</li>'
+            + '<li>Preis: '+p+' '+c+'</li>'
+            + '<li>bei: '+s+'</li>'
+            + '</ul></div><div class="clear"></div></div>';
+        }
+      };
+      widget.onLoad=function(){
+        var url = 'http://api.zanox.com/json/2009-07-01/products?q=trikot&adspace=961381&hasimages=true&region=de&items=3&connectid=EE60AD24F08B04E515D4&callback=ZX.callback';
+        var script = document.createElement('script');
+        script.src = url;
+        script.type = 'text/javascript';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="zx_items"></div>
+  </body>
+</html>
