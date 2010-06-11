@@ -523,6 +523,7 @@ class Trikot extends PageZws {
   
   function searchList() {
     return array(
+      'wm 2010 trikot' => 20,
       'trikot' => 14.9290114591,
       'fanshop' => 14.347255832,
       'fanartikel' => 14.2209756661,
