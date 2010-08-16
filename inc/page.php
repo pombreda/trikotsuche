@@ -146,7 +146,7 @@ abstract class Page {
     if (!check_array($items)) return false;
     $html = '';
     if (!empty($header)) {
-      $html .= sprintf('<h3><a href="%s">Tags</a></h3>', $path);
+      $html .= sprintf('<h3>Tags</h3>', $path);
     }
     $template = '<li style="font-size:%dpx;"><a href="%s">%s</a></li>';
     $html .= sprintf('<ul class="tags" id="%s">', $id);

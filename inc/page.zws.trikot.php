@@ -72,16 +72,8 @@ class Trikot extends PageZws {
         'Tags',
         30
       ));
+      $this->content($result);
     }
-    else {
-      $topic = $this->topic('Tags');
-      $result = $this->menu_tags(
-        $this->searchList(),
-        $path,
-        'tags'
-     );
-    }
-    $this->content($result);
   }
   
   /**
