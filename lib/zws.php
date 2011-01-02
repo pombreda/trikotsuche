@@ -1,7 +1,7 @@
 <?php
 include dirname(__file__) . DIRECTORY_SEPARATOR . '3rd' . DIRECTORY_SEPARATOR . 'zxapiclient_2009_07_01' . DIRECTORY_SEPARATOR . 'ApiClient.php';
 
-class Zws extends WebService {
+class Zws extends WSClient {
   /**
    * var ApiClient
    */

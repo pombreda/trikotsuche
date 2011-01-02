@@ -1,6 +1,4 @@
 TODO
-- RSS Feed
 - Design: better menu, HTML5, CSS3
 - Move check_* function calls from WebService classes to page.* classes to change values only for display.
-- Rename class WebService to WSClient.
 - A lot more...

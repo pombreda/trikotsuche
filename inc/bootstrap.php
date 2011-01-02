@@ -9,5 +9,5 @@ include $path_conf . 'settings.php';
 include $path_inc . 'common.php';
 
 include $path_lib . 'cache.php';
-include $path_lib . 'webservice.php';
+include $path_lib . 'wsclient.php';
 include $path_lib . 'datasource.php';

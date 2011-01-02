@@ -22,7 +22,7 @@ include($path_inc . 'page.zws.trikot.php');
 
 // Libraries
 include($path_lib . 'cache.php');
-include($path_lib . 'webservice.php');
+include($path_lib . 'wsclient.php');
 include($path_lib . 'zws.php');
 
 $path_root_www = 'http://' . $_SERVER['HTTP_HOST'] . base_path();

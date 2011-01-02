@@ -1,7 +1,7 @@
 <?php
 define('PATH_LIB', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 
-abstract class WebService {
+abstract class WSClient {
   
   var $request_uri = '';
   

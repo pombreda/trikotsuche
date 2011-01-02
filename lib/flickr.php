@@ -1,5 +1,5 @@
 <?php
-class Flickr extends WebService {
+class Flickr extends WSClient {
   public function build_request() {}
   
   public function __construct() {

@@ -5,7 +5,7 @@
 class Datasource {
   
   /**
-   * @var WebService
+   * @var WSClient
    */
   protected $web_service;
   
