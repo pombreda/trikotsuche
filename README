@@ -1,4 +1,7 @@
 TODO
+- Move data in PageZws::*List functions to to new data project.
+- Write script(s) to generate static menus for countries, teams, and players inside templates dir.
 - Design: better menu, HTML5, CSS3
 - Move check_* function calls from WebService classes to page.* classes to change values only for display.
+- Evaluate Slim framework for URL routing and view generation.
 - A lot more...
