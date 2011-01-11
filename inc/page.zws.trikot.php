@@ -434,6 +434,7 @@ class Trikot extends PageZws {
       'spanien' => array (
         'torres',
         'david villa',
+        'iniesta',
         'xavi',
         'fabregas',
         'sergio ramos',
@@ -459,15 +460,27 @@ class Trikot extends PageZws {
         'boca juniors'
       ),
       'deutschland' => array (
-        'bayern münchen',
-        'borussia dortmund',
-        'schalke 04',
-        'hertha bsc',
-        'werder bremen',
-        'vfb stuttgart',
+        'Bayer Leverkusen',
+        'Bayern München',
+        'Borussia Dortmund',
+        'Borussia Mönchengladbach',
+        'Eintracht Frankfurt',
+        'FC St. Pauli',
+        'Hamburger SV',
+        'Hannover 96',
+        'Mainz 05',
+        'Schalke 04',
+        'SC Freiburg',
+        'VfB Stuttgart',
+        'VfL Wolfsburg',
+        'Werder Bremen',
+        '1899 Hoffenheim',
+        '1. FC Kaiserslautern',
+        '1. FC Köln',
+        '1. FC Nürnberg',
+
+        'Hertha BSC',
         '1860 münchen',
-        '1. fc köln',
-        'hannover 96',
       ),
       'england' => array(
         'arsenal',
@@ -515,7 +528,7 @@ class Trikot extends PageZws {
   
   function searchList() {
     return array(
-      'wm 2010 trikot' => 20,
+      '2011 trikot' => 20,
       'trikot' => 14.9290114591,
       'fanshop' => 14.347255832,
       'fanartikel' => 14.2209756661,

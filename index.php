@@ -34,15 +34,11 @@ $page['path_img'] = $path_static . 'img/';
 $page['file_js'] = $path_static . 'js/script.js';
 $page['path_css'] = $path_static . 'css/';
 
-// Query parameters
-$search = $site_default_search;
-$current = '';
-
 $p = null;
 $class = '';
 $method = '';
-
 $q = '';
+
 if (isset($_REQUEST['q'])) {
   $q = $_REQUEST['q'];
 }
@@ -56,7 +52,6 @@ foreach ($urls as $pattern => $action) {
     $class = $a[0];
     $method = $a[1];
     $p = new $class($path_root_www, $zws);
-    #$p->params($params);
     $p->$method();
     break;
   }

@@ -65,7 +65,7 @@ class Zws extends WSClient {
   public function getProduct($id) {
     try {
       $result = json_decode($this->client->getProduct($id, $this->adspace_id));
-      if ($result->productItem) {
+      if (isset($result->productItem)) {
         return $this->item_prepare($result->productItem);
       }
     }

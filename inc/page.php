@@ -131,7 +131,7 @@ abstract class Page {
   function menu_items($items, $path, $header) {
     if (!check_array($items)) return false;  
     $html = '';
-    $template = '<li><a href="%s">%s</a></li>';    
+    $template = '<li><a href="%s">%s</a></li>';
     $html .= sprintf('<h3 class="subnav-header">%s</h3>', ucwords($header));
     $html .= sprintf('<ul class="subnav" id="%s">', strtolower($header));
     foreach ($items as $i) {
