@@ -112,7 +112,7 @@ if($result) {
     $total = $meta['total'];
     $page['search_info'] = 'Suchergebnisse: ' . $total;
     $page['content'] = $p->items_html($result);
-    $page['pager'] = $p->pager($total, 10);
+    $page['pager'] = $p->pager($total, Trikot::ITEM_LIMIT);
   }
 }
 
