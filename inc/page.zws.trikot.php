@@ -3,10 +3,12 @@
  * Main PageZws subclass for www.trikotsuche.de
  */
 class Trikot extends PageZws {
+  const ITEM_LIMIT = 30;
+  const TAG_LIMIT = 50;
+
   public function __construct($path, $client) {
     parent::__construct($client);
     $this->path($path);
-    
     # ugly
     $path = $this->path() . 'land/';
     $left = $this->menu($this->countryList(), $path, 'nav');
@@ -22,17 +24,16 @@ class Trikot extends PageZws {
     $this->topic('fußball trikots');
     $result = $this->item_search();
     $this->content($result);
-    
     $tags = $this->menu_tags(
       $list,
       $path,
       'tags',
       'Tags',
-      30
+      self::TAG_LIMIT
     );
     $this->box('right', $tags);
   }
-  
+
   /**
    * Display search results.
    */
@@ -47,13 +48,13 @@ class Trikot extends PageZws {
     $result = $this->item_search();
     $this->content($result);
   }
-  
+
   /**
    * Perform a search.
    */
   public function item_search() {
     return $this->client()->search(
-      $this->topic(), $this->num(), 10);
+      $this->topic(), $this->num(), self::ITEM_LIMIT);
   }
 
   /**
@@ -70,7 +71,7 @@ class Trikot extends PageZws {
         $path,
         'tags',
         'Tags',
-        30
+        self::TAG_LIMIT
       ));
       $this->content($result);
     }
@@ -119,6 +120,7 @@ class Trikot extends PageZws {
   }
   
   /**
+   * TODO move to script
    * Create link array for sitemap generation.
    */
   public function xml_sitemap() {
