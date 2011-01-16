@@ -108,9 +108,14 @@ EOF;
   }
 
   public function item_page($item, $path = '') {
+    $uri = $this->uri();
     $html = '<div id="item-page">';
     $template = $this->item_page_html();
     $html .= $this->item_page_render($template, $item);
+    $html .= '</div>';
+    $html .= '<div id="social" class="clear">';
+    $html .= '<div class="floatl"><iframe src="http://www.facebook.com/plugins/like.php?href=' . urlencode($uri) . '&amp;layout=box_count&amp;show_faces=false&amp;width=50&amp;action=like&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:65px;" allowTransparency="true"></iframe></div>';
+    $html .= '<div class="floatl"><a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></div>';
     $html .= '</div>';
     return $html;
   }

@@ -1,6 +1,12 @@
 body {
 font-family:Helvetica, sans-serif;
 }
+.floatl {
+float:left;
+}
+.clear{
+clear:both;
+}
 /* backgrounds */
 #ft {background:#f6f6f6;}
 

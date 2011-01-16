@@ -33,7 +33,25 @@ abstract class Page {
     
     $this->args = explode('/', $q);
   }
-  
+
+  protected function uri() {
+    static $uri;
+    if (!$uri) {
+      $s = empty($_SERVER["HTTPS"]) ? ''
+        : ($_SERVER["HTTPS"] == "on") ? "s"
+        : "";
+      $uri = 'http' . $s . '://' . $_SERVER['SERVER_NAME'];
+      if ('80' != $_SERVER['SERVER_PORT']) {
+        $uri .= ':' . $_SERVER['SERVER_PORT'];
+      }
+      $uri .= $_SERVER['REQUEST_URI'];
+    }
+    if ($_SERVER['QUERY_STRING']) {
+      $uri .= '?' . $_SERVER['QUERY_STRING'];
+    }
+    return $uri;
+  }
+
   protected function args($idx) {
     if (isset($this->args[$idx])) {
       return str_replace('-', ' ', $this->args[$idx]);
