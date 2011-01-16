@@ -1,6 +1,6 @@
 $(function(){
   initNav();
-  imp();
+  footerLinks();
   linkHd();
   asyncReq();
   tabMenu();
@@ -27,6 +27,12 @@ function asyncReq() {
   });
 }
 
+function footerLinks(){
+  $('#bottom').append(document.createElement('ul'));
+  imp();
+  he();
+}
+
 function imp(){
   var url = base_url + 'static/html/impressum.html';
   var imp = document.createElement('a');
@@ -34,7 +40,13 @@ function imp(){
   imp.setAttribute('class', 'async');
   imp.setAttribute('rel', 'nofollow');
   imp.innerHTML = 'Impressum';
-  document.getElementById('bottom').appendChild(imp);
+  var li = document.createElement('li');
+  $('#bottom ul').append(li.appendChild(imp));
+}
+
+function he(){
+  var html = '<li><a href="http://affiliate.hosteurope.de/click.php/6pOQgQ-8ti4wxqwPeXT0CYbBR3TImb76L6lq-qdeUBw," title="hosted by Host Europe">hosted by Host Europe</a><img src="http://affiliate.hosteurope.de/view.php/6pOQgQ-8ti4wxqwPeXT0CYbBR3TImb76L6lq-qdeUBw," alt=""/></li>';
+  $('#bottom ul').append(html);
 }
 
 function pager(page){
