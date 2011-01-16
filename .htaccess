@@ -49,16 +49,8 @@ DirectoryIndex index.php
 # Various rewrite rules.
 <IfModule mod_rewrite.c>
   RewriteEngine on
-  # To redirect all users to access the site WITH the 'www.' prefix,
-  # (http://example.com/... will be redirected to http://www.example.com/...)
-  # adapt and uncomment the following:
-  # RewriteCond %{HTTP_HOST} ^trikotsuche\.de$ [NC]
-  # RewriteRule ^(.*)$ http://www.trikotsuche.de/$1 [L,R=301]
-
-  # If your site is running in a VirtualDocumentRoot at http://example.com/,
-  # uncomment the following line:
-  # RewriteBase /
-
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
   # Rewrite URLs of the form 'x' to the form 'index.php?q=x'.
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
