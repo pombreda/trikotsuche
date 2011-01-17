@@ -10,11 +10,11 @@
 <body>
 <div id="hd_wrapper" class="section_wrapper">
   <div id="hd" class="container_12">
-    <div id="site_info" class="grid_6">
+    <div id="site_info" class="grid_6 offset_top">
       <div id="site_name"><?= $page['site_name'] ?></div>
       <div id="site_slogan"><?= $page['site_slogan'] ?></div>
     </div>
-    <div id="search_box" class="grid_6">
+    <div id="search_box" class="grid_6 offset_top">
       <form action="<?= $page['base_url']?>s/" method="post">
         <fieldset>
           <input id="search" type="text" name="search" value="" />

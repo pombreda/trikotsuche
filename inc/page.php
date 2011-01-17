@@ -213,14 +213,14 @@ abstract class Page {
     $num = intval($this->num());
     if ($total > $limit && $limit != 0) {
       $max_page = ceil($total / $limit) - 1;
-      $html .= '<div id="pagination">';
+      $html .= '<div class="pagination">';
       # previous link
       if ($num > 0) {
         $html .= sprintf('<a onclick="pager(%d)">&lt;&lt;</a>', 0);
         $html .= '&nbsp;&nbsp;';
         $html .= sprintf('<a onclick="pager(%d)">&lt;</a>', $num -1);
       }
-      $html .= sprintf('<span class="pager-info">%d von %d</span>', $num +1, $max_page +1);
+      $html .= sprintf('<span class="pager_info">%d von %d</span>', $num +1, $max_page +1);
       # next link
       if ($max_page > $num) {
         $html .= sprintf('<a onclick="pager(%d)">&gt;</a>', $num +1);

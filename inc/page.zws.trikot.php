@@ -3,7 +3,7 @@
  * Main PageZws subclass for www.trikotsuche.de
  */
 class Trikot extends PageZws {
-  const ITEM_LIMIT = 12;
+  const ITEM_LIMIT = 18;
   const TAG_LIMIT = 50;
 
   public function __construct($path, $client) {

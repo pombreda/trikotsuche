@@ -30,8 +30,8 @@ abstract class PageZws extends Page {
   </div>
   <div class="right">
     <h4>%s</h4>
-    <div class="info">Hersteller: %s</div>
-    <div class="link" rel="nofollow"><a href="%s">%s %s bei %s</a></div>
+    <div class="info small">Hersteller: %s</div>
+    <div class="link small" rel="nofollow"><a href="%s">%s %s bei %s</a></div>
   </div>
 </li>
 EOF;
