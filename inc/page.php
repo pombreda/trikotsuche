@@ -12,11 +12,11 @@ abstract class Page {
   protected $tab = '';
 
   private $args = array();
-  
+
 //  abstract protected function index();
 //  abstract protected function item();
 //  abstract protected function boxes();
-  
+
   public function __construct() {
     $q = '';
     if (isset($_REQUEST['q'])) {
@@ -58,32 +58,32 @@ abstract class Page {
     }
     return false;
   }
-  
+
   public function num() {
     return $this->num;
   }
-  
+
   public function urify($uri) {
     $uri = preg_replace('/[^\w\pL]+/u', '-', trim($uri));
     return urlencode(strtolower($uri));
   }
-  
+
   public function unurify($uri) {
     $uri = str_replace('-', ' ', $uri);
     return urldecode($uri);
   }
-  
+
   public function padre($padre = null) {
-    if ($padre) $this->padre = $padre;
+    if ($padre) $this->padre = strtolower($padre);
     return $this->padre;
   }
-  
+
   public function path($path = null) {
     if ($path)
       $this->path = $path;
     return $this->path;
   }
-  
+
   public function title($title = null) {
     if ($title)
       $this->title = $title;
@@ -95,13 +95,13 @@ abstract class Page {
       $this->topic = $topic;
     return $this->topic;
   }
-  
+
   public function format($format = null) {
     if ($format)
       $this->format = $format;
     return $this->format;
   }
-  
+
   public function params($params = null) {
     if ($params)
       $this->params = $params;
@@ -115,7 +115,7 @@ abstract class Page {
     if ($content) $this->box->$name = $content;
     return $this->box->$name;
   }
-  
+
   public function content($content = null) {
     if ($content)
       $this->content = $content;
@@ -137,7 +137,7 @@ abstract class Page {
     $html .= '</div>';
     return $html;
   }
-  
+
   function menu_sub($items, $path, $id, $header) {
     if (!check_array($items)) return false;  
     $html = sprintf('<div id="%s" class="submenu">', $id);
@@ -159,7 +159,7 @@ abstract class Page {
     $html .= '</ul>';
     return $html;
   }
-  
+
   function menu_tags($items, $path, $id, $header = '', $limit = 100) {
     if (!check_array($items)) return false;
     $html = '';
@@ -178,12 +178,12 @@ abstract class Page {
     $html .= '</ul>';
     return $html;
   }
-  
+
   function tab($id, $header, $content) {
     $this->tab[$id]['header'][] = $header;
     $this->tab[$id]['content'][] = $content;
   }
-  
+
   function tab_menu($id) {
     $html = '';
     if (isset($this->tab[$id])) {
@@ -231,7 +231,7 @@ abstract class Page {
     }
     return $html;
   }
-  
+
   public function xml_sitemap($items) {
     $xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
     $item_template = '<url><loc>%s</loc></url>';

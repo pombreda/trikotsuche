@@ -1,25 +1,19 @@
-@import url('./960.css');
+@import url('./lib/reset.css');
+@import url('./lib/960.css');
 
 body {
  font-family: Helvetica, sans-serif;
+ font-size:85%;
 }
 
 .floatl {
  float: left;
 }
-
-.clear {
+.centered {
+ text-align: center;
+}
+.clearer {
  clear: both;
-}
-
-/* backgrounds */
-#ft {
- background: #f6f6f6;
-}
-
-/* layout */
-#bd {
- margin-top: 5px;
 }
 
 .section {
@@ -28,41 +22,55 @@ body {
  margin: 0 auto;
 }
 
-/* top */
-#hd {
+.section_wrapper {
+ width: 100%;
+ clear: both;
+}
+
+#bd {
+ margin-top: 5px;
+}
+
+#hd_wrapper {
  background: url('../img/bg-hd.png') repeat-x top left;
 }
 
-#top {
+#hd {
  background: url('../img/logo.png') no-repeat top left;
  height: 85px;
 }
 
-#site_info {
- padding-left: 14.8461em;
- width: 50%
+#menu_wrapper {
+ background: #333333;
+ height: 35px;
+}
+
+#ft_wrapper {
+ background: #f6f6f6;
 }
 
 #site_name {
- font-weight: bold;
- font-size: 2.6em;
+font-weight: bold;
+font-size: 2em;
+padding-left: 90px;
 }
 
 #site_slogan {
- font-weight: bold;
- font-size: 1.8em;
+font-size: 1.2em;
+font-weight: bold;
+padding-left: 90px;
 }
 
 /* items */
 #items .item {
  float: left;
- width: 48%;
+ width: 31.5%;
  padding: .2em;
  margin: 0 .2em 0.5em 0;
 }
 
 #items .item .info {
- font: .9em;
+ font-size: .9em;
  width: 95%;
  margin: .2em 0;
  padding: 0;
@@ -76,14 +84,14 @@ body {
 }
 
 #items .item .right {
- float: left;
- width: 70%;
+float: left;
+padding-left: 3%;
+width: 67%;
 }
 
 #items h4 {
  font-size: .9em;
  line-height: 1.2em;
- width: 95%;
  margin: .2em 0;
  padding: 0;
  height: 3.6em;
@@ -202,8 +210,6 @@ div.tab_content a {
 }
 
 .menu ul {
- background: #333333;
- height: 35px;
  list-style: none;
  margin: 0;
  padding: 0;

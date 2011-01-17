@@ -1,6 +1,6 @@
 conf/settings.php
 static/html/
-static/css/960.css
+static/css/lib/
 lib/3rd/
 cache/
 *.tgz

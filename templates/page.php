@@ -8,55 +8,54 @@
 <link type="text/css" rel="stylesheet" media="all" href="<?= $page['path_css'] ?>style.css" />
 </head>
 <body>
-<div id="hd" class="container_12">
-
-<!--
-  <div id="top" class="section">
-    <div id="site_info">
+<div id="hd_wrapper" class="section_wrapper">
+  <div id="hd" class="container_12">
+    <div id="site_info" class="grid_6">
       <div id="site_name"><?= $page['site_name'] ?></div>
       <div id="site_slogan"><?= $page['site_slogan'] ?></div>
     </div>
-    <div id="search_box">
+    <div id="search_box" class="grid_6">
       <form action="<?= $page['base_url']?>s/" method="post">
         <fieldset>
           <input id="search" type="text" name="search" value="" />
           <input class="button" type="submit" value="Suche" />
         </fieldset>
       </form>
+      <div id="search_info">
+        <?= $page['search_info'] ?>
+      </div>
     </div>
   </div>
 </div>
--->
 
-<div id="main_menu" class="container_12">
-  <?php include('./templates/country_menu.html')?>
-</div>
-
-<div id="content-top" class="container_12">
-  <div id="search-display">
-    <h1><?= $page['search_display'] ?></h1>
-  </div>
-  <div id="search-info">
-    <?= $page['search_info'] ?>
+<div id="menu_wrapper" class="section_wrapper">
+  <div id="main_menu" class="container_12">
+    <?php include('./templates/country_menu.html')?>
   </div>
 </div>
 
 <div id="main" class="container_12">
-  <div id="content" class="grid_9">
-    <?= $page['content'] ?>
+  <div id="content" class="grid_9 alpha">
+    <div id="page_heading">
+      <h1><?= $page['page_heading'] ?></h1>
+    </div>
+    <div id="page">
+      <?= $page['content'] ?>
+    </div>
+    <div id="pager" class="clearer centered">
+      <?= $page['pager'] ?>
+    </div>
   </div>
-  <div id="right" class="grid_3">
+  <div id="right" class="grid_3 omega">
     <?= $page['right'] ?>
   </div>
 </div>
 
-<div id="pager" class="container_12"> 
-  <?= $page['pager'] ?>
-</div>
-
-<div id="ft" class="container_12">
-  <div id="bottom">
-    <p><?= $page['footer'] ?></p>
+<div id="ft_wrapper" class="section_wrapper">
+  <div id="ft" class="container_12">
+    <div id="bottom" class="centered">
+      <p><?= $page['footer'] ?></p>
+    </div>
   </div>
 </div>
 

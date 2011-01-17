@@ -8,18 +8,18 @@ $(function(){
 function linkHd() {
   var curr = document.location.href;
   if (curr != base_url) {
-    $('#site-info').click(function(){
+    $('#site_info').click(function(){
       document.location.href = base_url;
     });
-    $('#site-info').css('cursor', 'pointer');
-    $('#site-info').attr('title', 'Home');
+    $('#site_info').css('cursor', 'pointer');
+    $('#site_info').attr('title', 'Home');
   }
 }
 
 function asyncReq() {
   $('.async').click(function(){
     $.get($(this).attr('href'), function(data){
-      $('#content-top, #pager').empty();
+      $('#content_top, #pager').empty();
       $('#content').html(data);
     });
     return false;
