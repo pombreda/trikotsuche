@@ -11,8 +11,6 @@ class Trikot extends PageZws {
     $this->path($path);
     # ugly
     $path = $this->path() . 'land/';
-    $left = $this->menu($this->countryList(), $path, 'nav');
-    $this->box('left', $left);
   }
   
   /**

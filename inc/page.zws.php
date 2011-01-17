@@ -109,7 +109,7 @@ EOF;
 
   public function item_page($item, $path = '') {
     $uri = $this->uri();
-    $html = '<div id="item-page">';
+    $html = '<div id="item_page">';
     $template = $this->item_page_html();
     $html .= $this->item_page_render($template, $item);
     $html .= '</div>';

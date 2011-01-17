@@ -76,7 +76,6 @@ $page['search_display'] = $page['title'];
 $page['search_info'] = '';
 $page['content'] = 'Keine Ergebnisse';
 $page['pager'] = '';
-$page['left'] = $p->box('left');
 $page['right'] = $p->box('right');
 $page['footer'] = $site_footer;
 $page['rss_url'] = $rss_url;

@@ -5,68 +5,61 @@
 <title><?= $page['title'] ?></title>
 <link rel="shortcut icon" href="<?= $page['path_img'] ?>favicon.ico" type="image/x-icon" />
 <link rel="alternate" type="application/rss+xml" title="RSS feed" href="<?= $page['rss_url'] ?>" />
-<link type="text/css" rel="stylesheet" media="all" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" />
 <link type="text/css" rel="stylesheet" media="all" href="<?= $page['path_css'] ?>style.css" />
 </head>
 <body>
-<div id="doc-custom" class="yui-t1">
-  <div id="hd">
-    <div id="top" class="section">
-      <div id="site-info">
-        <div id="site-name"><?= $page['site_name'] ?></div>
-        <div id="site-slogan"><?= $page['site_slogan'] ?></div>
-      </div>
-      <div id="search-box">
-        <form action="<?= $page['base_url']?>s/" method="post">
-          <fieldset>
-            <input id="search" type="text" name="search" value="" />
-            <input class="button" type="submit" value="Suche" />
-          </fieldset>
-        </form>
-      </div>
+<div id="hd" class="container_12">
+
+<!--
+  <div id="top" class="section">
+    <div id="site_info">
+      <div id="site_name"><?= $page['site_name'] ?></div>
+      <div id="site_slogan"><?= $page['site_slogan'] ?></div>
     </div>
-  </div>
-  
-  <div id="bd">
-    <div id="main" class="section">
-      <div id="yui-main">
-        <div class="yui-b">
-        
-          <div id="content-top" class="yui-g">
-            <div id="search-display">
-              <h1><?= $page['search_display'] ?></h1>
-            </div>
-            <div id="search-info">
-              <?= $page['search_info'] ?>
-            </div>
-          </div>
-          
-          <div class="yui-ge">
-            <div id="content" class="yui-u first">
-              <?= $page['content'] ?>
-            </div>
-            <div id="right" class="yui-u">
-              <?= $page['right'] ?>
-            </div>
-          </div>
-          
-          <div id="pager" class="yui-g"> 
-            <?= $page['pager'] ?>
-          </div>
-          
-        </div>
-      </div>
-      <div id="left" class="yui-b">
-        <?= $page['left'] ?>
-      </div>
-    </div>
-  </div>
-  <div id="ft">
-    <div id="bottom" class="section">
-      <p><?= $page['footer'] ?></p>
+    <div id="search_box">
+      <form action="<?= $page['base_url']?>s/" method="post">
+        <fieldset>
+          <input id="search" type="text" name="search" value="" />
+          <input class="button" type="submit" value="Suche" />
+        </fieldset>
+      </form>
     </div>
   </div>
 </div>
+-->
+
+<div id="main_menu" class="container_12">
+  <?php include('./templates/country_menu.html')?>
+</div>
+
+<div id="content-top" class="container_12">
+  <div id="search-display">
+    <h1><?= $page['search_display'] ?></h1>
+  </div>
+  <div id="search-info">
+    <?= $page['search_info'] ?>
+  </div>
+</div>
+
+<div id="main" class="container_12">
+  <div id="content" class="grid_9">
+    <?= $page['content'] ?>
+  </div>
+  <div id="right" class="grid_3">
+    <?= $page['right'] ?>
+  </div>
+</div>
+
+<div id="pager" class="container_12"> 
+  <?= $page['pager'] ?>
+</div>
+
+<div id="ft" class="container_12">
+  <div id="bottom">
+    <p><?= $page['footer'] ?></p>
+  </div>
+</div>
+
 <script type="text/javascript">var base_url = '<?= $page['base_url'] ?>';</script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="<?= $page['file_js'] ?>"></script>
