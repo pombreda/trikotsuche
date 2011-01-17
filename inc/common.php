@@ -67,7 +67,7 @@ function base_path() {
     // defined for E_ALL compliance.
     $_SERVER['HTTP_HOST'] = '';
   }
-
+  # FIXME $base_url is not set before in this function
   if (isset ($base_url)) {
     // Parse fixed base URL from settings.php.
     $parts = parse_url($base_url);

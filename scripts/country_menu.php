@@ -35,6 +35,7 @@ function country_menu($countries_by_continent, $path) {
   return tag('div', array('class' => 'menu'), tag('ul', array(), $html));
 }
 
+# FIXME move to common.inc
 function tag($elt, array $attr = array(), $c = '') {
   $sattr = '';
   if ($attr)

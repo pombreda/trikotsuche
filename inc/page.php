@@ -150,7 +150,7 @@ abstract class Page {
     if (!check_array($items)) return false;  
     $html = '';
     $template = '<li><a href="%s">%s</a></li>';
-    $html .= sprintf('<h3 class="subnav-header">%s</h3>', ucwords($header));
+    $html .= sprintf('<h3 class="subnav_header">%s</h3>', ucwords($header));
     $html .= sprintf('<ul class="subnav" id="%s">', strtolower($header));
     foreach ($items as $i) {
       $href = $path . $this->urify($i);
@@ -190,14 +190,14 @@ abstract class Page {
       $header = $this->tab[$id]['header'];
       $content = $this->tab[$id]['content'];
       
-      $html .= sprintf('<ul id="%s" class="tab-menu">', $id);
-      $template = '<li id="tab-header-%s-%d" class="tab-header">%s</li>';
+      $html .= sprintf('<ul id="%s" class="tab_menu">', $id);
+      $template = '<li id="tab_header_%s_%d" class="tab_header">%s</li>';
       foreach ($header as $idx => $h) {
         $html .= sprintf($template, $id, $idx, $h);
       }
       $html .= '</ul>';
       
-      $template = '<div id="tab-content-%s-%d" class="tab-content">%s</div>';
+      $template = '<div id="tab_content_%s_%d" class="tab_content">%s</div>';
       foreach ($content as $idx => $c) {
         $html .= sprintf($template, $id, $idx, $c);
       }

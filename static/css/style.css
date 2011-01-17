@@ -155,13 +155,13 @@ body {
 }
 
 /* tab menu */
-ul.tab-menu {
+ul.tab_menu {
  display: block;
  height: 18px;
  width: 100%;
 }
 
-li.tab-header {
+li.tab_header {
  background: #F3F3F3 none repeat scroll 0 0;
  border: 1px solid #ddd;
  cursor: pointer;
@@ -172,18 +172,18 @@ li.tab-header {
  width: 3.3em;
 }
 
-li.tab-header.active {
+li.tab_header.active {
  border-bottom: 1px solid #fff;
  background: #fff;
 }
 
-div.tab-content {
+div.tab_content {
  border: 1px solid #ddd;
  clear: both;
  padding: 0.5em;
 }
 
-div.tab-content a {
+div.tab_content a {
  text-decoration: none;
  font-size: 1em;
 }
@@ -227,7 +227,7 @@ div.tab-content a {
 }
 
 .menu li a:hover,.menu ul li:hover a {
- background: #2580a2 url('../images/hover.gif') bottom center no-repeat;
+ background: #2580a2 url('../img/hover.gif') bottom center no-repeat;
  color: #FFFFFF;
  text-decoration: none;
 }
@@ -240,7 +240,7 @@ div.tab-content a {
  margin: 0px;
  border: 0px;
  position: absolute;
- width: 225px;
+ width: 675px;
  z-index: 200;
  /*top:1em;
     /*left:0;*/
@@ -251,9 +251,9 @@ div.tab-content a {
 }
 
 .menu li li {
- background: url('../images/sub_sep.gif') bottom left no-repeat;
+ background: url('../img/sub_sep.gif') bottom left no-repeat;
  display: block;
- float: none;
+ float: left;
  margin: 0px;
  padding: 0px;
  width: 225px;
@@ -274,7 +274,7 @@ div.tab-content a {
 }
 
 .menu li ul a:hover,.menu li ul li:hover a {
- background: #2580a2 url('../images/hover_sub.gif') center left no-repeat;
+ background: #2580a2 url('../img/hover_sub.gif') center left no-repeat;
  border: 0px;
  color: #ffffff;
  text-decoration: none;

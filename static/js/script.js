@@ -1,5 +1,4 @@
 $(function(){
-  initNav();
   footerLinks();
   linkHd();
   asyncReq();
@@ -54,65 +53,41 @@ function pager(page){
   document.location.href = loc + '?page=' + page;
 }
 
-function initNav() {
-  $('#nav .subnav').hide();
-  var selected = readCookie('selected-subnav');
-  if (selected) {
-    $('#' + selected).show();
-    $('#' + selected).prev('.subnav-header').addClass('active');
-  }
-  else {
-    $('#nav .subnav:first').show();
-    $('#nav .subnav-header:first').addClass('active');
-  }
-
-  $("#nav .subnav-header").click(function(){
-    var subnav = $(this).next('.subnav');
-    $(this).toggleClass('active');
-    subnav.slideToggle(300);
-    subnav.siblings('.subnav').slideUp('slow');
-    $(this).siblings('.subnav-header').removeClass('active');
-    createCookie('selected-subnav',subnav.attr('id'));
-  });
-
-}
-
 function tabMenu() {
-  $('.tab-content .subnav-header').hide();
-  $('.tab-content').hide();
+  $('.tab_content .subnav_header').hide();
+  $('.tab_content').hide();
 
   var re = /\-(\d+)$/;
   
-  var selected = readCookie('selected-tab');
+  var selected = readCookie('selected_tab');
   if (selected) {
     var shown = false;
-    $('.tab-content').each(function(){
+    $('.tab_content').each(function(){
       var reg = new RegExp('\-' + selected + '$', 'i');
       if($(this).attr('id').match(reg)) {
-        var c_id = $(this).attr('id').replace('tab-content', 'tab-header');
+        var c_id = $(this).attr('id').replace('tab_content', 'tab_header');
         $('#' + c_id).addClass('active');
         $(this).show();
         shown = true;
       }
     });
     if (!shown) {
-      $('.tab-content').show();
-      $('.tab-header').addClass('active');
+      $('.tab_content').show();
+      $('.tab_header').addClass('active');
     }
   }
   else {
-    $('.tab-content:first').show();
-    $('.tab-header:first').addClass('active');
+    $('.tab_content:first').show();
+    $('.tab_header:first').addClass('active');
   }
-  
   // TODO implement multiple tabs using parent id
-  $('.tab-header').click(function(){
-    $('.tab-content').hide();
+  $('.tab_header').click(function(){
+    $('.tab_content').hide();
     $(this).toggleClass('active');
-    $(this).siblings('.tab-header').removeClass('active');
-    var c_id = $(this).attr('id').replace('tab-header', 'tab-content');
+    $(this).siblings('.tab_header').removeClass('active');
+    var c_id = $(this).attr('id').replace('tab_header', 'tab_content');
     $('#' + c_id).show();
-    createCookie('selected-tab', c_id.match(re)[1]);
+    createCookie('selected_tab', c_id.match(re)[1]);
   });
 }
 
