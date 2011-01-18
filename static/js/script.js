@@ -1,9 +1,16 @@
 $(function(){
+  mainNav();
   footerLinks();
   linkHd();
   asyncReq();
   tabMenu();
 });
+
+function mainNav() {
+  $('.menu ul ul a').click(function(){
+    loading();
+  });
+}
 
 function linkHd() {
   var curr = document.location.href;
@@ -89,6 +96,10 @@ function tabMenu() {
     $('#' + c_id).show();
     createCookie('selected_tab', c_id.match(re)[1]);
   });
+}
+
+function loading() {
+  $('body').append('<div id="darkbox" class="white_content">Loading...</div><div id="fade" class="black_overlay"></div>');
 }
 
 /**

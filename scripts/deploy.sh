@@ -6,5 +6,4 @@ rm -rf /tmp/tr/scripts /tmp/tr/test /tmp/tr/cache/*
 cd /tmp/tr/
 tar czf tr.tgz *
 mv tr.tgz $CWD/
-rm -rf /tmp/tr
-cd -
+#rm -rf /tmp/tr
