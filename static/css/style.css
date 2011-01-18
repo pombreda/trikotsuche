@@ -301,19 +301,8 @@ cursor:pointer;
 margin: 0.1em;
 padding: 0.3em 0.5em;
 }
-/* loading animation */
-#loading {
-  -webkit-animation-name: rotateThis;
-  -webkit-animation-duration:2s;
-  -webkit-animation-iteration-count:infinite;
-  -webkit-animation-timing-function:linear;
-}
-@-webkit-keyframes rotateThis {
-  from {-webkit-transform:scale(0.5) rotate(0deg);}
-  to {-webkit-transform:scale(0.5) rotate(360deg);}
-}
 /* darkbox */
-.black_overlay{
+.bg_overlay{
   display: block;
   position: absolute;
   top: 0%;
@@ -326,7 +315,8 @@ padding: 0.3em 0.5em;
   opacity:.80;
   filter: alpha(opacity=80);
 }
-.white_content {
+.fg_overlay {
+  font-size:3em;
   display: block;
   position: absolute;
   top: 25%;
@@ -334,7 +324,6 @@ padding: 0.3em 0.5em;
   width: 50%;
   height: 50%;
   padding: 16px;
-  border: 16px solid orange;
   background-color: white;
   z-index:1002;
   overflow: auto;

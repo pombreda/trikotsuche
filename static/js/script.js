@@ -4,11 +4,19 @@ $(function(){
   linkHd();
   asyncReq();
   tabMenu();
+  ('localhost' == document.location.host) && localFix();//FIXME
 });
 
 function mainNav() {
   $('.menu ul ul a').click(function(){
     loading();
+  });
+}
+
+function localFix() {
+  $('a').click(function(){
+    var e = $(this);
+    e.attr('href', e.attr('href').replace('http://trikotsuche.de/', 'http://localhost/trikotsuche.de/'));
   });
 }
 
@@ -99,7 +107,17 @@ function tabMenu() {
 }
 
 function loading() {
-  $('body').append('<div id="darkbox" class="white_content">Loading...</div><div id="fade" class="black_overlay"></div>');
+  $('body').append('<div id="darkbox" class="fg_overlay"></div><div id="fade" class="bg_overlay"></div>');
+  appender = loadingText('darkbox', 'Loading');
+  setInterval("appender(' .')", 100);
+}
+
+function loadingText(id, t) {
+  var b = document.getElementById(id);
+  b.innerHTML = t;
+  return function (c) {
+    b.innerHTML += c;
+  }
 }
 
 /**
