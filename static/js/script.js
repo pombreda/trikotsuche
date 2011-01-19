@@ -1,5 +1,5 @@
 $(function(){
-  mainNav();
+  np();
   footerLinks();
   linkHd();
   asyncReq();
@@ -7,8 +7,8 @@ $(function(){
   ('localhost' == document.location.host) && localFix();//FIXME
 });
 
-function mainNav() {
-  $('.menu ul ul a').click(function(){
+function np() {
+  $('a').click(function(){
     loading();
   });
 }
