@@ -1,3 +1,6 @@
+FIXME
+- only show loading on left click
+
 TODO
 - Move data in PageZws::*List functions to to new data project.
 - Write script(s) to generate static menus for countries, teams, and players inside templates dir.

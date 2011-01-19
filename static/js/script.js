@@ -8,6 +8,7 @@ $(function(){
 });
 
 function np() {
+  // FIXME only show loading on left click
   $('a').click(function(){
     loading();
   });
