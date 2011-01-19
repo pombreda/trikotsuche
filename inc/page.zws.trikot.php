@@ -47,6 +47,12 @@ class Trikot extends PageZws {
     $this->content($result);
   }
 
+  public function manufacturer() {
+    $this->topic($this->args(1));
+    $result = $this->item_search();
+    $this->content($result);
+  }
+
   /**
    * Perform a search.
    */

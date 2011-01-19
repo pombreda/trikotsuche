@@ -30,7 +30,7 @@ abstract class PageZws extends Page {
   </div>
   <div class="right">
     <h4>%s</h4>
-    <div class="info small">Hersteller: %s</div>
+    <div class="info small">Hersteller: <a href="%s">%s</a></div>
     <div class="link small" rel="nofollow"><a href="%s">%s %s bei %s</a></div>
   </div>
 </li>
@@ -44,7 +44,7 @@ EOF;
 </div>
 <div class="right">
   <h4>%s</h4>
-  <div class="info">Hersteller: %s</div>
+  <div class="info">Hersteller: <a href="%s">%s</a></div>
   <div class="link" rel="nofollow"><a href="%s">%s %s bei %s</a></div>
 </div>
 EOF;
@@ -66,6 +66,7 @@ EOF;
     if (!$item['image_small']) {
       $item['image_small'] = ZWS_IMAGE_SMALL_URL;
     }
+    $manufacturer_search = $this->path() . 'hersteller/' . urlencode($item['manufacturer']);
     return sprintf(
       $template,
       $item['id'],
@@ -73,6 +74,7 @@ EOF;
       $item['image_small'],
       $item['name'],
       $item['name'],
+      $manufacturer_search,
       $item['manufacturer'],
       $item['url'],
       $item['price'],
@@ -84,11 +86,13 @@ EOF;
     if (!$item['image_large']) {
       $item['image_large'] = ZWS_IMAGE_LARGE_URL;
     }
+    $manufacturer_search = $this->path() . 'hersteller/' . urlencode($item['manufacturer']);
     return sprintf(
       $template,
       $item['image_large'],
       $item['name'],
       $item['name'],
+      $manufacturer_search,
       $item['manufacturer'],
       $item['url'],
       $item['price'],
