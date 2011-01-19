@@ -206,6 +206,7 @@ font:67.5% "Lucida Sans Unicode", "Bitstream Vera Sans",
 sans-serif;
 font-size:14px;
 font-weight:bold;
+position:relative;
 }
 
 .menu ul {
@@ -245,7 +246,7 @@ padding:0px;
 margin:0px;
 border:0px;
 position:absolute;
-width:675px;
+width:960px;
 z-index:200;
 /*top:1em;
 /*left:0;*/
@@ -253,6 +254,7 @@ z-index:200;
 
 .menu li:hover ul {
 display:block;
+left:0;
 }
 
 .menu li li {

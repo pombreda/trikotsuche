@@ -1,5 +1,5 @@
 $(function(){
-  np();
+  newPage();
   footerLinks();
   linkHd();
   asyncReq();
@@ -7,10 +7,9 @@ $(function(){
   ('localhost' == document.location.host) && localFix();//FIXME
 });
 
-function np() {
-  // FIXME only show loading on left click
-  $('a').click(function(){
-    loading();
+function newPage() {
+  $('a:not([href="#"])').click(function(e){
+    (1 != e.button) && loading();
   });
 }
 
