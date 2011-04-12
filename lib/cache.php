@@ -136,7 +136,7 @@ class Cache {
   }
   
   public function path($cache_id) {
-    return $this->dir() . substr($cache_id, 0 ,2) . DIRECTORY_SEPARATOR;
+    return $this->dir() . substr($cache_id, 0 ,2) . '/';
   }
 
   /**

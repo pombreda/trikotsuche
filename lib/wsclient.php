@@ -1,5 +1,5 @@
 <?php
-define('PATH_LIB', dirname(__FILE__) . DIRECTORY_SEPARATOR);
+define('PATH_LIB', dirname(__FILE__) . '/');
 
 abstract class WSClient {
   

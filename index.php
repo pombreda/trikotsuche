@@ -2,13 +2,12 @@
 error_reporting(E_ERROR|E_WARNING|E_NOTICE);
 
 // Bootstrap
-$path_root_fs = getcwd() . DIRECTORY_SEPARATOR;
-$path_conf = $path_root_fs . 'conf' . DIRECTORY_SEPARATOR;
-$path_inc = $path_root_fs . 'inc' . DIRECTORY_SEPARATOR;
-$path_lib = $path_root_fs . 'lib' . DIRECTORY_SEPARATOR;
-$path_lib3rd = $path_lib . '3rd' . DIRECTORY_SEPARATOR;
-$path_cache = $path_root_fs . 'cache' . DIRECTORY_SEPARATOR;
-$path_templates = $path_root_fs . 'templates' . DIRECTORY_SEPARATOR;
+$path_root_fs = getcwd() . '/';
+$path_conf = $path_root_fs . 'conf/';
+$path_inc = $path_root_fs . 'inc/';
+$path_lib = $path_root_fs . 'lib/';
+$path_cache = $path_root_fs . 'cache/';
+$path_templates = $path_root_fs . 'templates/';
 $template_page = $path_templates . 'page.php';
 $template_rss = $path_templates . 'rss.php';
 

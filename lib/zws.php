@@ -1,5 +1,5 @@
 <?php
-include dirname(__file__) . DIRECTORY_SEPARATOR . '3rd' . DIRECTORY_SEPARATOR . 'zxapiclient_2009_07_01' . DIRECTORY_SEPARATOR . 'ApiClient.php';
+include dirname(__file__) . '/3rd/zanox/client/ApiClient.php';
 
 class Zws extends WSClient {
   /**
@@ -15,7 +15,7 @@ class Zws extends WSClient {
   public function build_request() {}
   
   public function __construct($connect_id, $public_key, $secret_key, $adspace_id = NULL) {
-    $this->client = ApiClient::factory(PROTOCOL_JSON, VERSION_2009_07_01);
+    $this->client = ApiClient::factory(PROTOCOL_JSON, VERSION_2011_03_01);
     $this->client->setConnectId($connect_id);
     $this->client->setSecretKey($secret_key);
     $this->client->setPublicKey($public_key);
@@ -34,7 +34,6 @@ class Zws extends WSClient {
       null,
       null,
       null,
-      array(),
       true,
       0,
       null,
@@ -66,7 +65,7 @@ class Zws extends WSClient {
     try {
       $result = json_decode($this->client->getProduct($id, $this->adspace_id));
       if (isset($result->productItem)) {
-        return $this->item_prepare($result->productItem);
+        return $this->item_prepare(current($result->productItem));
       }
     }
     catch (Exception $e) {

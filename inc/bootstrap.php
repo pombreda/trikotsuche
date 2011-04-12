@@ -1,8 +1,8 @@
 <?php
-$path_root = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
-$path_conf = $path_root . 'conf' . DIRECTORY_SEPARATOR;
-$path_inc = $path_root . 'inc' . DIRECTORY_SEPARATOR;
-$path_lib = $path_root . 'lib' . DIRECTORY_SEPARATOR;
+$path_root = dirname(dirname(__FILE__)) . '/';
+$path_conf = $path_root . 'conf/';
+$path_inc = $path_root . 'inc/';
+$path_lib = $path_root . 'lib/';
 
 include $path_conf . 'settings.php';
 
