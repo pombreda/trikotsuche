@@ -33,7 +33,7 @@ class Zws extends WSClient {
       'phrase',
       null,
       null,
-      null,
+      array(),
       true,
       0,
       null,
