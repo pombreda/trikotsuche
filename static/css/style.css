@@ -221,7 +221,7 @@ padding:0px;
 }
 
 .menu li a {
-background:#333333 url("images/seperator.gif") bottom right no-repeat;
+background:#333333 url('../img/seperator.gif') bottom right no-repeat;
 color:#cccccc;
 display:block;
 font-weight:normal;
