@@ -107,7 +107,7 @@ function tabMenu() {
 }
 
 function loading() {
-  $('body').append('<div id="darkbox" class="fg_overlay"></div><div id="fade" class="bg_overlay"></div>');
+  $('body').append('<div id="darkbox" class="fg_overlay"></div><div class="bg_overlay"></div>');
   appender = loadingText('darkbox', 'Loading');
   setInterval("appender(' .')", 100);
 }
