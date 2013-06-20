@@ -3,7 +3,7 @@
  * Main PageZws subclass for www.trikotsuche.de
  */
 class Trikot extends PageZws {
-  const ITEM_LIMIT = 18;
+  const ITEM_LIMIT = 15;
   const TAG_LIMIT = 50;
 
   public function __construct($path, $client) {
@@ -12,7 +12,7 @@ class Trikot extends PageZws {
     # ugly
     $path = $this->path() . 'land/';
   }
-  
+
   /**
    * Display index page.
    */
@@ -80,7 +80,7 @@ class Trikot extends PageZws {
       $this->content($result);
     }
   }
-  
+
   /**
    * Display a single item.
    */
@@ -92,7 +92,7 @@ class Trikot extends PageZws {
     $this->content($result);
     $this->boxes();
   }
-  
+
   /**
    * Country getter/setter.
    */
@@ -122,7 +122,7 @@ class Trikot extends PageZws {
     $tabs = $this->tab_menu($parent);
     $this->box('right', $tabs);
   }
-  
+
   /**
    * TODO move to script
    * Create link array for sitemap generation.
@@ -133,19 +133,19 @@ class Trikot extends PageZws {
     $players = $this->playerList();
     $teams = $this->teamList();
     $search = $this->searchList();
-    
+
     foreach ($countries as $continent => $cs) {
       foreach ($cs as $c) {
         $path = $this->path();
         $c = $this->urify($c);
         $items[] = $path . 'land/' . $c;
-        
+
         if (isset($players[$c])) {
           foreach ($players[$c] as $i) {
             $items[] = $path . $c . '/spieler/' . $this->urify($i);
           }
         }
-        
+
         if (isset($teams[$c])) {
           foreach ($teams[$c] as $i) {
             $items[] = $path . $c . '/verein/' . $this->urify($i);
@@ -153,11 +153,11 @@ class Trikot extends PageZws {
         }
       }
     }
-    
+
     foreach ($search as $term => $value) {
       $items[] = $path . 'tags/' . $this->urify($term);
     }
-    
+
     parent::xml_sitemap($items);
   }
 
@@ -173,7 +173,7 @@ class Trikot extends PageZws {
     $this->content($result);
     $this->boxes();
   }
-  
+
   public function countryList() {
     return array (
       'europa' => array (
@@ -520,7 +520,7 @@ class Trikot extends PageZws {
       )
     );
   }
-  
+
   public function indexList() {
     return array(
       'fussballtrikots' => array(
@@ -531,7 +531,7 @@ class Trikot extends PageZws {
       )
     );
   }
-  
+
   function searchList() {
     return array(
       '2012 trikot' => 20,

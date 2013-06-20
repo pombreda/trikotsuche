@@ -63,15 +63,15 @@ EOF;
     $item_uri = $this->path() . $path . '/'
       . $this->urify($item['name']) . '/'
       . $item['id'] . '/' . $this->padre();
-    if (!$item['image_small']) {
-      $item['image_small'] = ZWS_IMAGE_SMALL_URL;
+    if (!$item['image_large']) {
+      $item['image_large'] = ZWS_IMAGE_SMALL_URL;
     }
     $manufacturer_search = $this->path() . 'hersteller/' . urlencode($item['manufacturer']);
     return sprintf(
       $template,
       $item['id'],
       $item_uri,
-      $item['image_small'],
+      $item['image_large'],
       $item['name'],
       $item['name'],
       $manufacturer_search,
